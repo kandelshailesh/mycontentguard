@@ -9,9 +9,9 @@ export default function Content() {
   return (
     <div className='main_content'>
       <Switch>
-        <Route path='/' component={Submit_Removal}></Route>
         <Route path='/submit-removals' component={Submit_Removal}></Route>
         <Route path='/removal-pages/:value' component={Removal_Page}></Route>
+        <Route path='/' component={Submit_Removal}></Route>
       </Switch>
     </div>
   );
