@@ -27,19 +27,47 @@ export default function Submit_Removal() {
           person has their own respective button and separate submission form.*
         </p>
         <div className='left__buttonlist'>
-          <Link to='/'>
+          <Link
+            to={{
+              pathname: '/removal-pages/user-info/',
+              state: {
+                value: 'Main User Info',
+              },
+            }}
+          >
             <button>Submit Your Removal Info</button>
           </Link>
-          <Link to='/'>
+          <Link
+            to={{
+              pathname: '/removal-pages/family-member-1/',
+              state: {
+                value: 'Family Member#1',
+              },
+            }}
+          >
             <button>Submit Family Member #1</button>
           </Link>
-          <Link to='/'>
+          <Link
+            to={{
+              pathname: '/removal-pages/family-member-2/',
+              state: {
+                value: 'Family Member#2',
+              },
+            }}
+          >
             <button>Submit Family Member #2</button>
           </Link>
-          <Link to='/'>
+          <Link
+            to={{
+              pathname: '/removal-pages/family-member-3/',
+              state: {
+                value: 'Family Member#3',
+              },
+            }}
+          >
             <button>Submit Family Member #3</button>
           </Link>
-          <Link to='/'>
+          <Link to='/removal-pages/family-member-4/'>
             <button className='buttonlist__additional'>
               Add Additional Removals
             </button>
@@ -112,8 +140,12 @@ export default function Submit_Removal() {
               className='site-collapse-custom-panel'
             >
               <p>
-                Just give our support a call at (865) 225-9998 or email us at
-                info@mycontentguard.com and we will be happy to help you.
+                Just give our support a call at{' '}
+                <a href='tel:865225998'>(865) 225-9998 </a>or email us at
+                <a href='mailto:info@mycontentguard.com'>
+                  info@mycontentguard.com
+                </a>
+                and we will be happy to help you.
               </p>
             </Panel>
           </Collapse>

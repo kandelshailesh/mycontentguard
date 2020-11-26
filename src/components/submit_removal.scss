@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 100px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
 
   //   justify-content: space-between;
   .submit_removal__left {
@@ -223,6 +223,7 @@
       }
     }
     .submit_removal__right {
+      margin-left: 0px;
       margin-top: 20px;
       .right__viewremoval {
         border: 2px solid #eeeeee;

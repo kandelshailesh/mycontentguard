@@ -4,13 +4,11 @@ import Content from './components/content';
 import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header></Header>
-        <Content></Content>
-        {/* <Footer></Footer> */}
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Header></Header>
+      <Content></Content>
+      {/* <Footer></Footer> */}
+    </BrowserRouter>
   );
 }
 
