@@ -9,7 +9,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  margin: 100px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
 }
 
 .submit_removal .submit_removal__left {
@@ -266,6 +266,7 @@
     transition: background-color 0.5s ease-in-out;
   }
   .submit_removal .submit_removal__right {
+    margin-left: 0px;
     margin-top: 20px;
   }
   .submit_removal .submit_removal__right .right__viewremoval {
