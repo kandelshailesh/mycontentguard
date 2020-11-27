@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import './removal_page.css';
 import { Tabs } from 'antd';
 import Family_Member from './family_member';
 import Address from './address';

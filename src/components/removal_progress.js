@@ -1,5 +1,4 @@
 import React from 'react';
-import './removal_progress.css';
 import { Link } from 'react-router-dom';
 export default function Removal_Progress() {
   return (

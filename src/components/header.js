@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
-import './header.css';
 
 export default function Header() {
   const [active, setActive] = useState('submit-removals');

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Route, Switch } from 'react-router-dom';
-import './content.css';
 import Submit_Removal from './submit_removal';
 import Removal_Page from './removal_page';
 import Removal_Progress from './removal_progress';

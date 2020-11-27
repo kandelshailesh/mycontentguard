@@ -1,5 +1,4 @@
 import React from 'react';
-import './family_member.css';
 import { Formik, Field, Form } from 'formik';
 export default function Family_Member() {
   return (

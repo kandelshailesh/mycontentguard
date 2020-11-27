@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import './footer.css';
 
 export default function Footer() {
   const [width, setWidth] = useState(window.innerWidth);
