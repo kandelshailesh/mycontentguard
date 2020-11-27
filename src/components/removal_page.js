@@ -106,7 +106,6 @@ export default function Removal_Page(props) {
           >
             {({ values, setFieldValue }) => (
               <Form className='left__form'>
-                {JSON.stringify(values, null, 2)}
                 <div class='form__tabs'>
                   <Tabs type='card' size='large'>
                     <TabPane tab={firsttab} key='1'>
