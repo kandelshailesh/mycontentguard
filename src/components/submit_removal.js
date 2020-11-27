@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './submit_removal.css';
 import 'antd/dist/antd.css';
 import {
   InfoCircleFilled,
@@ -141,7 +140,7 @@ export default function Submit_Removal() {
             >
               <p>
                 Just give our support a call at{' '}
-                <a href='tel:865225998'>(865) 225-9998 </a>or email us at
+                <a href='tel:8652259998'>(865) 225-9998 </a>or email us at
                 <a href='mailto:info@mycontentguard.com'>
                   info@mycontentguard.com
                 </a>
