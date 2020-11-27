@@ -7,9 +7,11 @@ import './css/main.css';
 function App() {
   return (
     <BrowserRouter>
-      <Header></Header>
-      <Content></Content>
-      <Footer></Footer>
+      <div className='main_container'>
+        <Header></Header>
+        <Content></Content>
+        <Footer></Footer>
+      </div>
     </BrowserRouter>
   );
 }
