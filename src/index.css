@@ -24,3 +24,20 @@ code {
   padding: 0px;
   box-sizing: border-box;
 }
+:root {
+  --e-global-color-primary: #6ec1e4;
+  --e-global-color-secondary: #54595f;
+  --e-global-color-text: #7a7a7a;
+  --e-global-color-accent: #61ce70;
+  --e-global-color-1323e681: #4054b2;
+  --e-global-color-76b3f973: #23a455;
+  --e-global-color-19c0d10e: #000;
+  --e-global-color-165fd974: #fff;
+  --e-global-color-3b066a76: #0084ff;
+  --e-global-color-5e2d1028: #1e1e1e;
+  --e-global-color-29fa43ab: #bc11c6;
+  --e-global-color-5a7d8770: rgba(255, 255, 255, 0.75);
+  --e-global-color-260ebf45: #ff9600;
+  --e-global-color-4366c97d: #283ed4;
+  --e-global-color-362de34: #f7fcff;
+}

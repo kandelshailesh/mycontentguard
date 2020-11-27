@@ -225,6 +225,12 @@
   transition: background-color 0.5s ease-in-out;
 }
 
+.removal_page input {
+  font-size: 18px;
+  font-family: 'Poppins', Sans-serif;
+  font-weight: 400;
+}
+
 @media screen and (max-width: 1000px) {
   .removal_page {
     display: -webkit-box;
