@@ -10,15 +10,107 @@ import { Formik, Field, Form } from 'formik';
 
 const { TabPane } = Tabs;
 export default function Removal_Page(props) {
-  const [firsttab, setFirstTab] = useState('');
+  const [firsttab, setFirstTab] = useState(
+    props.location.state.value || tablist[props.match.params.value],
+  );
   const [userinfo, setUserInfo] = useState('');
+  const [userinfo_name, setuserinfo_name] = useState('');
+  const nametotab = {
+    'Main User Info': 'user-info',
+    'Family Member#1': 'family-member-1',
+    'Family Member#2': 'family-member-2',
+    'Family Member#3': 'family-member-3',
+  };
   const tablist = {
     'user-info': 'Main User Info',
     'family-member-1': 'Family Member#1',
     'family-member-2': 'Family Member#2',
     'family-member-3': 'Family Member#3',
   };
+  const tabindex = {
+    'Family Member#1': 0,
+    'Family Member#2': 1,
+    'Family Member#3': 2,
+  };
+  const userform_name = {
+    'user-info': {
+      name: 'name',
+      aliases: 'aliases',
+      current_email: 'current_email',
+      past_emails: 'past_emails',
+      gender: 'gender',
+      birthdate: 'birthdate',
+      adress: 'adress',
+      current_phone: 'current_phone',
+      past_adresses: ['past_adresses[0]', 'past_adresses[1]'],
+      past_phones: ['past_phones[0]', 'past_phones[1]'],
+    },
+    'family-member-1': {
+      name: 'relatives[0].name',
+      aliases: 'relatives[0].aliases',
+      current_email: 'relatives[0].current_email',
+      past_emails: 'relatives[0].past_emails',
+      gender: 'relatives[0].gender',
+      birthdate: 'relatives[0].birthdate',
+      adress: 'relatives[0].adress',
+      current_phone: 'relatives[0]current_phone',
+      past_adresses: [
+        'relatives[0].past_adresses[0]',
+        'relatives[0].past_adresses[1]',
+      ],
+      past_phones: [
+        'relatives[0].past_phones[0]',
+        'relatvies[0].past_phones[1]',
+      ],
+    },
+    'family-member-2': {
+      name: 'relatives[1].name',
+      aliases: 'relatives[1].aliases',
+      current_email: 'relatives[1].current_email',
+      past_emails: 'relatives[1].past_emails',
+      gender: 'relatives[1].gender',
+      birthdate: 'relatives[1].birthdate',
+      adress: 'relatives[1].adress',
+      current_phone: 'relatives[1]current_phone',
+      past_adresses: [
+        'relatives[1].past_adresses[0]',
+        'relatives[1].past_adresses[1]',
+      ],
+      past_phones: [
+        'relatives[1].past_phones[0]',
+        'relatvies[1].past_phones[1]',
+      ],
+    },
+    'family-member-3': {
+      name: 'relatives[2].name',
+      aliases: 'relatives[2].aliases',
+      current_email: 'relatives[2].current_email',
+      past_emails: 'relatives[2].past_emails',
+      gender: 'relatives[2].gender',
+      birthdate: 'relatives[2].birthdate',
+      adress: 'relatives[2].adress',
+      current_phone: 'relatives[2]current_phone',
+      past_adresses: [
+        'relatives[2].past_adresses[0]',
+        'relatives[2].past_adresses[1]',
+      ],
+      past_phones: [
+        'relatives[2].past_phones[0]',
+        'relatvies[2].past_phones[1]',
+      ],
+    },
+  };
 
+  useEffect(() => {
+    if (props.location.state) {
+      const { value } = props.location.state;
+      setFirstTab(value);
+      setuserinfo_name(userform_name[nametotab[value]]);
+    } else {
+      setFirstTab(tablist[props.match.params.value]);
+      setuserinfo_name(userform_name[props.match.params.value]);
+    }
+  }, []);
   useEffect(() => {
     axiosInstance
       .get('/api/client/1')
@@ -26,29 +118,98 @@ export default function Removal_Page(props) {
         console.log(data);
         const userinfo_api = data.data.data;
         const birthdate = data.data.data.birthdate;
-        userinfo_api.birthdate = birthdate
-          ? new Date(birthdate).getFullYear() +
-            '-' +
-            ('0' + (new Date(birthdate).getMonth() + 1)).slice(-2) +
-            '-' +
-            ('0' + new Date(birthdate).getDate()).slice(-2)
-          : '';
-        userinfo_api.past_emails =
-          userinfo_api.past_emails.length > 0
-            ? userinfo_api.past_emails.map(result => result.email)
-            : '';
+        console.log('First tab is', firsttab);
+        switch (firsttab) {
+          case 'Main User Info':
+            userinfo_api.birthdate = birthdate
+              ? new Date(birthdate).getFullYear() +
+                '-' +
+                ('0' + (new Date(birthdate).getMonth() + 1)).slice(-2) +
+                '-' +
+                ('0' + new Date(birthdate).getDate()).slice(-2)
+              : '';
+            userinfo_api.adress =
+              userinfo_api.city +
+              ',' +
+              userinfo_api.street +
+              ',' +
+              userinfo_api.state +
+              ',' +
+              userinfo_api.country;
+            userinfo_api.past_adresses.forEach((value, index) => {
+              userinfo_api.past_adresses[index] =
+                value.city +
+                ',' +
+                value.street +
+                ',' +
+                value.state +
+                ',' +
+                value.country;
+            });
+            // userinfo_api.past_emails =
+            //   userinfo_api.past_emails.length > 0
+            //     ? userinfo_api.past_emails.map(result => result.email)
+            //     : '';
+            break;
+          case 'Family Member#1' || 'Family Member #2' || 'Family Member #3':
+            // userinfo_api.relatives[tabindex[firsttab]].aliases =
+            //   userinfo_api.relatives[tabindex[firsttab]].aliases.length > 0
+            //     ? userinfo_api.relatives[tabindex[firsttab]].aliases.toString()
+            //     : '';
+            userinfo_api.relatives[tabindex[firsttab]].birthdate = userinfo_api
+              .relatives[tabindex[firsttab]].birthdate
+              ? new Date(
+                  userinfo_api.relatives[tabindex[firsttab]].birthdate,
+                ).getFullYear() +
+                '-' +
+                (
+                  '0' +
+                  (new Date(
+                    userinfo_api.relatives[tabindex[firsttab]].birthdate,
+                  ).getMonth() +
+                    1)
+                ).slice(-2) +
+                '-' +
+                (
+                  '0' +
+                  new Date(
+                    userinfo_api.relatives[tabindex[firsttab]].birthdate,
+                  ).getDate()
+                ).slice(-2)
+              : '';
+            userinfo_api.relatives[tabindex[firsttab]].adress =
+              userinfo_api.relatives[tabindex[firsttab]].city +
+              ',' +
+              userinfo_api.relatives[tabindex[firsttab]].street +
+              ',' +
+              userinfo_api.relatives[tabindex[firsttab]].state +
+              ',' +
+              userinfo_api.relatives[tabindex[firsttab]].country;
+            userinfo_api.relatives[tabindex[firsttab]].past_adresses.forEach(
+              (value, index) => {
+                userinfo_api.relatives[tabindex[firsttab]].past_adresses[
+                  index
+                ] =
+                  value.city +
+                  ',' +
+                  value.street +
+                  ',' +
+                  value.state +
+                  ',' +
+                  value.country;
+              },
+            );
+            // userinfo_api.relatives[tabindex[firsttab]].past_emails =
+            //   userinfo_api.relatives[tabindex[firsttab]].past_emails.length > 0
+            //     ? userinfo_api.relatives[tabindex[firsttab]].past_emails.map(
+            //         result => result.email,
+            //       )
+            //     : '';
+            break;
+        }
         setUserInfo(userinfo_api);
       })
       .catch(err => console.log(err.error));
-  }, []);
-  useEffect(() => {
-    console.log(props);
-    if (props.location.state) {
-      const { value } = props.location.state;
-      setFirstTab(value);
-    } else {
-      setFirstTab(tablist[props.match.params.value]);
-    }
   }, []);
 
   const submit_userinfo = values => {
@@ -108,13 +269,19 @@ export default function Removal_Page(props) {
                 <div class='form__tabs'>
                   <Tabs type='card' size='large'>
                     <TabPane tab={firsttab} key='1'>
-                      <Family_Member userinfo={values} />
+                      <Family_Member
+                        userinfo={values}
+                        userinfo_name={userinfo_name}
+                      />
                     </TabPane>
                     <TabPane tab='Addresses' key='2'>
-                      <Address userinfo={values} />
+                      <Address
+                        userinfo={values}
+                        userinfo_name={userinfo_name}
+                      />
                     </TabPane>
                     <TabPane tab='Phone Numbers' key='3'>
-                      <Phone userinfo={values} />
+                      <Phone userinfo={values} userinfo_name={userinfo_name} />
                     </TabPane>
                   </Tabs>
                 </div>

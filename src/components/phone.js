@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form } from 'formik';
 
-export default function Family_Member({ userinfo }) {
+export default function Phone({ userinfo, userinfo_name }) {
   const [alternate1, setalternate1] = useState(
     userinfo.past_phones[0] ? true : false,
   );
@@ -13,7 +13,7 @@ export default function Family_Member({ userinfo }) {
       <div className='phoneform__main'>
         <label>Main Phone Number</label>
         <p>
-          <Field name='current_phone' type='tel'></Field>
+          <Field name={userinfo_name.current_phone} type='tel'></Field>
         </p>
       </div>
       <div className='phoneform__addalternate1'>
@@ -30,7 +30,7 @@ export default function Family_Member({ userinfo }) {
         <div className='phoneform__alternate1'>
           <label>Other Phone Number(s)</label>
           <p>
-            <Field name='past_phones[0].phone' type='tel'></Field>
+            <Field name={userinfo_name.past_phones[0].phone} type='tel'></Field>
           </p>
         </div>
       )}
@@ -48,7 +48,7 @@ export default function Family_Member({ userinfo }) {
         <div className='phoneform__alternate2'>
           <label>Other Phone Number(s)</label>
           <p>
-            <Field name='past_phones[1].phone' type='tel'></Field>
+            <Field name={userinfo_name.past_phones[1].phone} type='tel'></Field>
           </p>
         </div>
       )}
