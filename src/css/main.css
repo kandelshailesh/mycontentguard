@@ -1962,7 +1962,17 @@
   }
 }
 
-.floating_button {
+.floating_button__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 500;
+  bottom: 8px;
+}
+
+.floating_button__main .floating_button {
   width: 150px;
   display: flex;
   flex-direction: row;
@@ -1971,22 +1981,19 @@
   padding: 10px;
   border-radius: 25px;
   border: 0;
-  position: fixed;
-  bottom: 8px;
   font-size: 16px;
   left: 10px;
   color: white;
-  z-index: 200;
   cursor: pointer;
   background-color: var(--e-global-color-4366c97d);
 }
 
-.floating_button:hover {
+.floating_button__main .floating_button:hover {
   background-color: black;
   transition: background-color 0.5s;
 }
 
-.floating_button label {
+.floating_button__main .floating_button label {
   display: flex;
   margin-left: 5px;
 }
