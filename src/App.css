@@ -3,4 +3,9 @@
     width: 1300px;
     margin: 0 auto !important;
   }
+  .floating_button__main {
+    width: 1300px !important;
+    margin: 0 auto !important;
+    justify-content: flex-start !important;
+  }
 }
