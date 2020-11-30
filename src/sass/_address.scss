@@ -23,11 +23,12 @@
       width: 100%;
       input[type='text'],
       input[type='date'] {
-        height: 46px;
+        height: 30px;
         padding: 15px;
         border: 1px solid #333;
         // flex: 1;
         border-radius: 3px;
+        margin-bottom: 5px;
         &:focus {
           outline: none;
           box-shadow: none;
@@ -78,7 +79,7 @@
         width: 100%;
         input[type='text'],
         input[type='date'] {
-          height: 46px;
+          height: 30px;
           padding: 15px;
           border: 1px solid #333;
           // flex: 1;

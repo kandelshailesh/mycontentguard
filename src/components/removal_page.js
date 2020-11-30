@@ -41,8 +41,28 @@ export default function Removal_Page(props) {
       gender: 'gender',
       birthdate: 'birthdate',
       adress: 'adress',
+      city: 'city',
+      state: 'state',
+      zip_code: 'zip_code',
+      country: 'country',
+      street: 'street',
       current_phone: 'current_phone',
-      past_adresses: ['past_adresses[0]', 'past_adresses[1]'],
+      past_adresses: [
+        {
+          country: 'past_adresses[0].country',
+          state: 'past_adresses[0].state',
+          city: 'past_addresses[0].city',
+          street: 'past_addresses[0].street',
+          zip_code: 'past_adresses[0].zip_code',
+        },
+        {
+          country: 'past_adresses[1].country',
+          state: 'past_adresses[1].state',
+          city: 'past_addresses[1].city',
+          street: 'past_addresses[1].street',
+          zip_code: 'past_adresses[1].zip_code',
+        },
+      ],
       past_phones: ['past_phones[0]', 'past_phones[1]'],
     },
     'family-member-1': {
@@ -110,6 +130,10 @@ export default function Removal_Page(props) {
       setFirstTab(tablist[props.match.params.value]);
       setuserinfo_name(userform_name[props.match.params.value]);
     }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
     axiosInstance
@@ -303,6 +327,8 @@ export default function Removal_Page(props) {
               upload here.
             </p>
           </div>
+
+          {/* url(//mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/07/image_2020_07_30T03_25_26_775Z.png) */}
           <div className='right__family'>
             <Link to='/'>
               <button className='buttonlist__family'>

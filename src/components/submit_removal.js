@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import {
@@ -10,6 +10,9 @@ import { Collapse } from 'antd';
 
 const { Panel } = Collapse;
 export default function Submit_Removal() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='submit_removal'>
       <div className='submit_removal__left'>
@@ -66,7 +69,7 @@ export default function Submit_Removal() {
           >
             <button>Submit Family Member #3</button>
           </Link>
-          <Link to='/removal-pages/family-member-4/'>
+          <Link to='/removal-pages/additional-information/'>
             <button className='buttonlist__additional'>
               Add Additional Removals
             </button>
@@ -91,6 +94,13 @@ export default function Submit_Removal() {
               View Your Removal Progress
             </button>
           </Link>
+        </div>
+        <div className='right__scanner'>
+          <p className='scanner__heading1'>Dark Web Scanner</p>
+          <p className='scanner__heading2'>
+            Click below to see if your data has been breached.
+          </p>
+          <button className='scanner__button'>SCAN NOW</button>
         </div>
         <div className='right__faq'>
           <p className='faq__heading1'>
