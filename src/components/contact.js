@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Field, Form } from 'formik';
 
-export default function contact__main() {
+export default function Contact__Main() {
+  useEffect(() => {
+    document.title = 'Contact | myContentGuard';
+  }, []);
+
   return (
     <div className='contact'>
       <div className='contact__main'>

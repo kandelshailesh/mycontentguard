@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Removal_Progress() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = 'Removal Progress | myContentGuard';
   }, []);
   return (
     <div className='removal_progress'>
