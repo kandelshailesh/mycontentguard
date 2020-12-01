@@ -1,0 +1,86 @@
+var mock_data = {
+  data: [
+    {
+      age: 29,
+      aliases: ['Kevvy', 'Woody'],
+      birthdate: '10/18/1991',
+      current_phone: '66587412',
+      current_address: {
+        city: 'Test City',
+        country: 'United States',
+        state: 'Texas',
+        street: 'Test Street',
+        zip_code: '8000',
+      },
+      current_email: 'john@test.com',
+      gender: 'M',
+      id: 1,
+      name: 'John Wood',
+      past_adresses: [
+        {
+          city: 'Past City 1',
+          country: 'United States',
+          id: 5,
+          state: 'Texas',
+          street: 'Past Street 1',
+          zip_code: '5845656',
+        },
+        {
+          city: 'Past City 2',
+          country: 'United States',
+          id: 6,
+          state: 'Texas',
+          street: 'Past Street 2',
+          zip_code: '8956516',
+        },
+      ],
+      past_emails: ['past_update@past.com', 'past_update@past.com'],
+      past_phones: ['999999'],
+      relatives: [
+        {
+          age: 21,
+          aliases: ['Johny', 'Woody'],
+          birthdate: '10/18/1981',
+      current_phone: '66587412',
+
+          current_address: {
+            city: 'Test City',
+            country: 'United States',
+            state: 'Texas',
+            street: 'Test Street',
+            zip_code: '8000',
+          },
+          current_email: 'kwood@test.com',
+          external_id: '89416',
+          gender: 'M',
+          id: 1,
+          name: 'Kevin Wood',
+          past_adresses: [
+            {
+              city: 'Past City 1',
+              country: 'United States',
+              id: 5,
+              state: 'Texas',
+              street: 'Past Street 1',
+              zip_code: '5845656',
+            },
+            {
+              city: 'Past City 2',
+              country: 'United States',
+              id: 6,
+              state: 'Texas',
+              street: 'Past Street 2',
+              zip_code: '8956516',
+            },
+          ],
+          past_emails: ['past_update@past.com', 'past_update@past.com'],
+          past_phones: ['999999'],
+          relatives: ['Uncle Ben', 'Aunt Mary'],
+        },
+      ],
+    },
+  ],
+  msg: 'MOCK DATA!!!',
+  success: true,
+};
+module.exports = { mock_data };

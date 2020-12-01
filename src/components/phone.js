@@ -2,12 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form } from 'formik';
 
 export default function Phone({ userinfo, userinfo_name }) {
-  const [alternate1, setalternate1] = useState(
-    userinfo.past_phones[0] ? true : false,
-  );
-  const [alternate2, setalternate2] = useState(
-    userinfo.past_phones[1] ? true : false,
-  );
+  const [alternate1, setalternate1] = useState(false);
+  const [alternate2, setalternate2] = useState(false);
+
+  useEffect(() => {
+    if (userinfo_name.name === 'name') {
+      setalternate1(userinfo.past_phones[0] ? true : false);
+
+      setalternate2(userinfo.past_phones[1] ? true : false);
+    } else {
+      const index = userinfo_name.name.split('[')[1].split('')[0];
+
+      if (userinfo.relatives[index]) {
+        setalternate1(userinfo.relatives[index].past_phones[0] ? true : false);
+        setalternate2(userinfo.relatives[index].past_phones[1] ? true : false);
+      } else {
+        setalternate1(false);
+        setalternate2(false);
+      }
+    }
+  }, []);
+
   return (
     <div className='phoneform'>
       <div className='phoneform__main'>
@@ -21,16 +36,16 @@ export default function Phone({ userinfo, userinfo_name }) {
         <p>
           <Field
             onClick={() => setalternate1(!alternate1)}
-            checked={userinfo.past_phones[0]}
+            checked={alternate1}
             type='checkbox'
           ></Field>
         </p>
       </div>
-      {(userinfo.past_phones[0] || alternate1) && (
+      {alternate1 && (
         <div className='phoneform__alternate1'>
           <label>Other Phone Number(s)</label>
           <p>
-            <Field name={userinfo_name.past_phones[0].phone} type='tel'></Field>
+            <Field name={userinfo_name.past_phones[0]} type='tel'></Field>
           </p>
         </div>
       )}
@@ -39,16 +54,16 @@ export default function Phone({ userinfo, userinfo_name }) {
         <p>
           <Field
             onClick={() => setalternate2(!alternate2)}
-            checked={userinfo.past_phones[1]}
+            checked={alternate2}
             type='checkbox'
           ></Field>
         </p>
       </div>
-      {(userinfo.past_phones[1] || alternate2) && (
+      {alternate2 && (
         <div className='phoneform__alternate2'>
           <label>Other Phone Number(s)</label>
           <p>
-            <Field name={userinfo_name.past_phones[1].phone} type='tel'></Field>
+            <Field name={userinfo_name.past_phones[1]} type='tel'></Field>
           </p>
         </div>
       )}

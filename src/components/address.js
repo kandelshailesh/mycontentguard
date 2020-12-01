@@ -2,12 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form } from 'formik';
 
 export default function Address({ userinfo, userinfo_name }) {
-  const [alternate1, setalternate1] = useState(
-    userinfo.past_adresses[0] ? true : false,
-  );
-  const [alternate2, setalternate2] = useState(
-    userinfo.past_adresses[1] ? true : false,
-  );
+  const [alternate1, setalternate1] = useState(false);
+  const [alternate2, setalternate2] = useState(false);
+
+  useEffect(() => {
+    if (userinfo_name.name === 'name') {
+      setalternate1(userinfo.past_adresses[0] ? true : false);
+
+      setalternate2(userinfo.past_adresses[1] ? true : false);
+    } else {
+      const index = userinfo_name.name.split('[')[1].split('')[0];
+      alert(index);
+      if (userinfo.relatives[index]) {
+        setalternate1(
+          userinfo.relatives[index].past_adresses[0] ? true : false,
+        );
+        setalternate2(
+          userinfo.relatives[index].past_adresses[1] ? true : false,
+        );
+      } else {
+        setalternate1(false);
+        setalternate2(false);
+      }
+    }
+  }, []);
+
   return (
     <div className='addressform'>
       <div className='addressform__currentaddress'>
@@ -15,27 +34,27 @@ export default function Address({ userinfo, userinfo_name }) {
         <p>
           <Field
             placeholder='Country'
-            name={userinfo_name.country}
+            name={userinfo_name.current_address.country}
             type='text'
           ></Field>
           <Field
             placeholder='State'
-            name={userinfo_name.city}
+            name={userinfo_name.current_address.city}
             type='text'
           ></Field>
           <Field
             placeholder='City'
-            name={userinfo_name.city}
+            name={userinfo_name.current_address.city}
             type='text'
           ></Field>
           <Field
             placeholder='Street'
-            name={userinfo_name.street}
+            name={userinfo_name.current_address.street}
             type='text'
           ></Field>
           <Field
             placeholder='Zip Code'
-            name={userinfo_name.zip_code}
+            name={userinfo_name.current_address.zip_code}
             type='text'
           ></Field>
         </p>
@@ -51,12 +70,12 @@ export default function Address({ userinfo, userinfo_name }) {
         <p>
           <Field
             onClick={() => setalternate1(!alternate1)}
-            checked={userinfo.past_adresses[0]}
+            checked={alternate1}
             type='checkbox'
           ></Field>
         </p>
       </div>
-      {(userinfo.past_adresses[0] || alternate1) && (
+      {alternate1 && (
         <div className='addressform__pastaddress2'>
           <label>Past or Alternate Address</label>
           <p>
@@ -94,12 +113,12 @@ export default function Address({ userinfo, userinfo_name }) {
         <p>
           <Field
             onClick={() => setalternate2(!alternate2)}
-            checked={userinfo.past_adresses[1]}
+            checked={alternate2}
             type='checkbox'
           ></Field>
         </p>
       </div>
-      {(userinfo.past_adresses[1] || alternate2) && (
+      {alternate2 && (
         <div className='addressform__pastaddress3'>
           <label>Past or Alternate Address</label>
           <p>
