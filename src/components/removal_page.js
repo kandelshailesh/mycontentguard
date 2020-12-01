@@ -51,7 +51,7 @@ export default function Removal_Page(props) {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get('/api/client/1')
+      .get('/api/client/')
       .then(data => {
         console.log(data);
         // const userinfo_api = data.data.data;
