@@ -38,13 +38,14 @@ export default function Removal_Page(props) {
     if (props.location.state) {
       const { value } = props.location.state;
       setFirstTab(value);
+      document.title = `${value} | myContentGuard`;
       setuserinfo_name(userform_name(nametotab[value]));
     } else {
       setFirstTab(tablist[props.match.params.value]);
+      document.title = `${tablist[props.match.params.value]} | myContentGuard`;
       setuserinfo_name(userform_name(props.match.params.value));
     }
   }, []);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

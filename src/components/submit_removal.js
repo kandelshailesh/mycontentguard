@@ -12,6 +12,7 @@ const { Panel } = Collapse;
 export default function Submit_Removal() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = 'Additional Information | myContentGuard';
   }, []);
   return (
     <div className='submit_removal'>

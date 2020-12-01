@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 
 export default function Addition_Information() {
+  useEffect(() => {
+    document.title = 'Additional Information | myContentGuard';
+
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='additional_information'>
       <div className='additional_information__main'>
