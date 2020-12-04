@@ -4060,7 +4060,7 @@
     background-color: black;
   }
   .homepage .homepage__section1 .section1__main .section1__child .heading4 .learn_more {
-    padding: 10px 20px;
+    padding: 5px 20px;
     width: 100%;
     font-size: 25px;
     margin-right: 10px;
@@ -4087,13 +4087,13 @@
   .homepage .homepage__section2 .section2__heading1::before, .homepage .homepage__section4 .section2__heading1::before {
     position: absolute;
     height: 18px;
-    width: 300px;
+    width: calc(100% - 50px);
     border-bottom: 2px solid #eee;
     content: '';
-    left: 35%;
-    top: 0%;
-    margin-left: 40px;
-    margin-right: 40px;
+    left: 5%;
+    top: -5%;
+    margin-left: 20px;
+    margin-right: 20px;
     z-index: 1;
   }
   .homepage .homepage__section2 .section2__heading1 .heading1__title, .homepage .homepage__section4 .section2__heading1 .heading1__title {
@@ -4170,13 +4170,13 @@
   .homepage .homepage__section4 .section2__heading1::before {
     position: absolute;
     height: 18px;
-    width: 300px;
+    width: calc(100% - 50px);
     border-bottom: 2px solid #eee;
     content: '';
-    left: 35%;
-    top: 0%;
-    margin-left: 40px;
-    margin-right: 40px;
+    left: 5%;
+    top: -5%;
+    margin-left: 20px;
+    margin-right: 20px;
     z-index: 1;
   }
   .homepage .homepage__section4 .section2__heading1 .heading1__title {
@@ -4843,13 +4843,13 @@
   .homepage .homepage__section7 .section7__heading1::before {
     position: absolute;
     height: 18px;
-    width: 300px;
+    width: calc(100% - 50px);
     border-bottom: 2px solid #eee;
     content: '';
-    left: 35%;
-    top: 0%;
-    margin-left: 40px;
-    margin-right: 40px;
+    left: 5%;
+    top: -5%;
+    margin-left: 20px;
+    margin-right: 20px;
     z-index: 1;
   }
   .homepage .homepage__section7 .section7__heading1 .heading1__title {
@@ -4894,7 +4894,7 @@
   }
   .homepage .homepage__section8 .section8__description .description__button {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 10px 2px;
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -4935,13 +4935,13 @@
   .homepage .homepage__section9 .section9__heading1::before {
     position: absolute;
     height: 18px;
-    width: 300px;
+    width: calc(100% - 50px);
     border-bottom: 2px solid #eee;
     content: '';
-    left: 35%;
-    top: 0%;
-    margin-left: 40px;
-    margin-right: 40px;
+    left: 5%;
+    top: -5%;
+    margin-left: 20px;
+    margin-right: 20px;
     z-index: 1;
   }
   .homepage .homepage__section9 .section9__heading1 .heading1__title {
@@ -4991,13 +4991,13 @@
   .homepage .homepage__section10 .section10__heading1::before {
     position: absolute;
     height: 18px;
-    width: 300px;
+    width: calc(100% - 50px);
     border-bottom: 2px solid #eee;
     content: '';
-    left: 35%;
-    top: -10%;
-    margin-left: 40px;
-    margin-right: 40px;
+    left: 5%;
+    top: -5%;
+    margin-left: 20px;
+    margin-right: 20px;
     z-index: 1;
   }
   .homepage .homepage__section10 .section10__heading1 .heading1__title {
@@ -5044,8 +5044,8 @@
   }
   .homepage .homepage__section10 .section10__main .section10__left .left__button {
     margin-top: 20px;
-    padding: 8px 5px;
-    font-size: 20px;
+    padding: 10px 2px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     border: 0px;
