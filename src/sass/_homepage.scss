@@ -1185,7 +1185,7 @@
               }
             }
             .learn_more {
-              padding: 10px 20px;
+              padding: 5px 20px;
               width: 100%;
               font-size: 25px;
               margin-right: 10px;
@@ -1214,13 +1214,13 @@
         &::before {
           position: absolute;
           height: 18px;
-          width: 300px;
+          width: calc(100% - 50px);
           border-bottom: 2px solid #eee;
           content: '';
-          left: 35%;
-          top: 0%;
-          margin-left: 40px;
-          margin-right: 40px;
+          left: 5%;
+          top: -5%;
+          margin-left: 20px;
+          margin-right: 20px;
 
           // background-color: red;
           z-index: 1;
@@ -1302,14 +1302,13 @@
         &::before {
           position: absolute;
           height: 18px;
-          width: 300px;
+          width: calc(100% - 50px);
           border-bottom: 2px solid #eee;
           content: '';
-
-          left: 35%;
-          top: 0%;
-          margin-left: 40px;
-          margin-right: 40px;
+          left: 5%;
+          top: -5%;
+          margin-left: 20px;
+          margin-right: 20px;
 
           // background-color: red;
           z-index: 1;
@@ -2013,15 +2012,13 @@
         &::before {
           position: absolute;
           height: 18px;
-          width: 300px;
+          width: calc(100% - 50px);
           border-bottom: 2px solid #eee;
           content: '';
-
-          left: 35%;
-          top: 0%;
-          margin-left: 40px;
-          margin-right: 40px;
-
+          left: 5%;
+          top: -5%;
+          margin-left: 20px;
+          margin-right: 20px;
           // background-color: red;
           z-index: 1;
         }
@@ -2070,7 +2067,7 @@
         }
         .description__button {
           margin-top: 20px;
-          padding: 10px 20px;
+          padding: 10px 2px;
           font-size: 20px;
           font-weight: bold;
           color: white;
@@ -2111,14 +2108,13 @@
         &::before {
           position: absolute;
           height: 18px;
-          width: 300px;
+          width: calc(100% - 50px);
           border-bottom: 2px solid #eee;
           content: '';
-
-          left: 35%;
-          top: 0%;
-          margin-left: 40px;
-          margin-right: 40px;
+          left: 5%;
+          top: -5%;
+          margin-left: 20px;
+          margin-right: 20px;
 
           // background-color: red;
           z-index: 1;
@@ -2174,14 +2170,13 @@
         &::before {
           position: absolute;
           height: 18px;
-          width: 300px;
+          width: calc(100% - 50px);
           border-bottom: 2px solid #eee;
           content: '';
-
-          left: 35%;
-          top: -10%;
-          margin-left: 40px;
-          margin-right: 40px;
+          left: 5%;
+          top: -5%;
+          margin-left: 20px;
+          margin-right: 20px;
 
           // background-color: red;
           z-index: 1;
@@ -2231,8 +2226,8 @@
           }
           .left__button {
             margin-top: 20px;
-            padding: 8px 5px;
-            font-size: 20px;
+            padding: 10px 2px;
+            font-size: 18px;
             font-weight: bold;
             color: white;
             border: 0px;
