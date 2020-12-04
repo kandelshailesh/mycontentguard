@@ -192,6 +192,11 @@
         flex: 0.5;
         flex-direction: column;
         padding: 30px;
+        .left__description {
+          > p > img {
+            width: calc(100% - 10px);
+          }
+        }
       }
       .footertop__right {
         flex: 0.5;
