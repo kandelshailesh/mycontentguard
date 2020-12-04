@@ -15,6 +15,7 @@ export default function Removal_Page(props) {
     props.location.state.value || tablist[props.match.params.value],
   );
   const [userinfo, setUserInfo] = useState('');
+  const [dummy_userinfo, set_dummy_userinfo] = useState('');
   const [userinfo_name, setuserinfo_name] = useState('');
   const nametotab = {
     'Main User Info': 'user-info',
@@ -51,15 +52,13 @@ export default function Removal_Page(props) {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get('/api/client/')
+      .get('/api/client/1')
       .then(data => {
         console.log(data);
-        // const userinfo_api = data.data.data;
-        const userinfo_api = mock_data.data[0];
-
-        // const birthdate = data.data.data.birthdate;
-        const birthdate = mock_data.data[0].birthdate;
-
+        const userinfo_api = data.data.data;
+        // const userinfo_api = mock_data.data[0];
+        const birthdate = data.data.data.birthdate;
+        // const birthdate = mock_data.data[0].birthdate;
         console.log('First tab is', firsttab);
         switch (firsttab) {
           case 'Main User Info':
@@ -97,29 +96,10 @@ export default function Removal_Page(props) {
                 ).slice(-2)
               : '';
 
-            // userinfo_api.relatives[tabindex[firsttab]].past_adresses.forEach(
-            //   (value, index) => {
-            //     userinfo_api.relatives[tabindex[firsttab]].past_adresses[
-            //       index
-            //     ] =
-            //       value.city +
-            //       ',' +
-            //       value.street +
-            //       ',' +
-            //       value.state +
-            //       ',' +
-            //       value.country;
-            //   },
-            // );
-            // userinfo_api.relatives[tabindex[firsttab]].past_emails =
-            //   userinfo_api.relatives[tabindex[firsttab]].past_emails.length > 0
-            //     ? userinfo_api.relatives[tabindex[firsttab]].past_emails.map(
-            //         result => result.email,
-            //       )
-            //     : '';
             break;
         }
         setUserInfo(userinfo_api);
+        set_dummy_userinfo(userinfo_api);
       })
       .catch(err => console.log(err.error));
   }, []);
@@ -127,26 +107,138 @@ export default function Removal_Page(props) {
   const submit_userinfo = values => {
     // await new Promise(resolve => setTimeout(resolve, 500));
     // alert(JSON.stringify(values, null, 2));
-    const birthdate = values.birthdate ? values.birthdate.split('-') : '';
     console.log(values);
-    values.birthdate = values.birthdate
-      ? birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0]
-      : '';
 
+    var birthdate;
+    if (tabindex[firsttab] === undefined) {
+      birthdate = values.birthdate ? values.birthdate.split('-') : '';
+      if (values.birthdate) {
+        values.birthdate =
+          birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0];
+      }
+      if (values.past_emails) {
+        values.past_emails = values.past_emails.split(',');
+      }
+      if (values.aliases) {
+        values.aliases = values.aliases.split(',');
+      }
+    } else if (values.relatives[Number(tabindex[firsttab])]) {
+      if (values.relatives[Number(tabindex[firsttab])].birthdate) {
+        birthdate = values.relatives[
+          Number(tabindex[firsttab])
+        ].birthdate.split('-');
+        values.relatives[Number(tabindex[firsttab])].birthdate =
+          birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0];
+      }
+      if (values.relatives[Number(tabindex[firsttab])].past_emails) {
+        values.relatives[
+          Number(tabindex[firsttab])
+        ].past_emails = values.relatives[
+          Number(tabindex[firsttab])
+        ].past_emails.join(',');
+      }
+      if (values.relatives[Number(tabindex[firsttab])].aliases) {
+        values.relatives[Number(tabindex[firsttab])].aliases = values.relatives[
+          Number(tabindex[firsttab])
+        ].aliases.split(',');
+      }
+      values.relatives[Number(tabindex[firsttab])].client_id = 1;
+    }
+    // var client_data;
+    // if (tabindex[firsttab] === undefined) {
+    //   client_data = {
+    //     age: values.age || '',
+    //     aliases: values.aliases || '',
+    //     birthdate: values.birthdate || '',
+    //     current_phone: values.current_phone || '',
+    //     current_address: {
+    //       city: values.city || '',
+    //       country: values.country || '',
+    //       state: values.state || '',
+    //       street: values.street || '',
+    //       zip_code: values.zip_code || '',
+    //     },
+    //     current_email: values.current_email || '',
+    //     gender: values.gender || '',
+    //     id: values.id,
+    //     name: values.name || '',
+    //     past_emails: [],
+    //     past_phones: [],
+    //     past_adresses: [],
+    //   };
+    // } else {
+    //   var index = Number(tabindex[firsttab]);
+
+    //   values.relatives.forEach((value, index, array) => {});
+    //   client_data = {
+    //     relatives: [
+    //       ...values.relatives,
+    //       {
+    //         age: values.relatives[Number(tabindex[firsttab])].age || '',
+    //         aliases: values.relatives[Number(tabindex[firsttab])].aliases || '',
+    //         birthdate:
+    //           values.relatives[Number(tabindex[firsttab])].birthdate || '',
+    //         current_phone:
+    //           values.relatives[Number(tabindex[firsttab])].current_phone || '',
+    //         current_address: {
+    //           city: values.relatives[Number(tabindex[firsttab])].city || '',
+    //           country:
+    //             values.relatives[Number(tabindex[firsttab])].country || '',
+    //           state: values.relatives[Number(tabindex[firsttab])].state || '',
+    //           street: values.relatives[Number(tabindex[firsttab])].street || '',
+    //           zip_code:
+    //             values.relatives[Number(tabindex[firsttab])].zip_code || '',
+    //         },
+    //         current_email:
+    //           values.relatives[Number(tabindex[firsttab])].current_email || '',
+    //         gender: values.relatives[Number(tabindex[firsttab])].gender || '',
+    //         id: values.relatives[Number(tabindex[firsttab])].id,
+    //         name: values.relatives[Number(tabindex[firsttab])].name || '',
+    //         past_emails: [],
+    //         past_phones: [],
+    //         past_adresses: [],
+    //       },
+    //     ],
+    //   };
+    // }
     axiosInstance
-      .patch('/api/profile-pages/1', {
-        client: values,
-        confidence_score: 200,
-        data_broker_id: 1,
-        human_approved: 1,
-        id: 1,
-        opted_out: 0,
-        url: 'https://www.spokeo.com/John-Doe/Utah/Salt-Lake-City/p40237321453',
+      .patch('/api/client/1', {
+        ...values,
       })
       .then(result => {
         console.log(result);
-        values.birthdate = birthdate.join('-');
-        alert('Added successfully');
+        if (values.relatives[Number(tabindex[firsttab])]) {
+          if (values.relatives[Number(tabindex[firsttab])].birthdate) {
+            values.relatives[
+              Number(tabindex[firsttab])
+            ].birthdate = birthdate.join('-');
+          }
+          if (values.relatives[Number(tabindex[firsttab])].past_emails) {
+            values.relatives[
+              Number(tabindex[firsttab])
+            ].past_emails = values.relatives[
+              Number(tabindex[firsttab])
+            ].past_emails.join(',');
+          }
+          if (values.relatives[Number(tabindex[firsttab])].aliases) {
+            values.relatives[
+              Number(tabindex[firsttab])
+            ].aliases = values.relatives[
+              Number(tabindex[firsttab])
+            ].aliases.join(',');
+          }
+        } else if (tabindex[firsttab] === undefined) {
+          if (values.birthdate) {
+            values.birthdate = birthdate.join('-');
+          }
+          if (values.aliases) {
+            values.aliases = values.aliases.join(',');
+          }
+          if (values.past_emails) {
+            values.past_emails = values.past_emails.join(',');
+          }
+        }
+        alert('Updated successfully');
       })
       .catch(err => console.log(err));
   };
@@ -197,7 +289,7 @@ export default function Removal_Page(props) {
                     </TabPane>
                   </Tabs>
                 </div>
-                <button>Submit</button>
+                <button type='submit'>Submit</button>
               </Form>
             )}
           </Formik>

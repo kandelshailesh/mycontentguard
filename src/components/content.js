@@ -9,8 +9,8 @@ import Additional_Information from './additional_information';
 import Contact from './contact';
 export default function Content() {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='main_content'>
       <Switch>
@@ -23,6 +23,8 @@ export default function Content() {
 
         <Route path='/removal-progress/' component={Removal_Progress}></Route>
         <Route path='/contact/' component={Contact}></Route>
+        {/* <Route path='/home/' component={Homepage}></Route> */}
+
         <Route path='/' component={Submit_Removal}></Route>
       </Switch>
     </div>

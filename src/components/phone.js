@@ -7,15 +7,19 @@ export default function Phone({ userinfo, userinfo_name }) {
 
   useEffect(() => {
     if (userinfo_name.name === 'name') {
-      setalternate1(userinfo.past_phones[0] ? true : false);
+      setalternate1(userinfo.past_phones[0] !== undefined ? true : false);
 
-      setalternate2(userinfo.past_phones[1] ? true : false);
+      setalternate2(userinfo.past_phones[1] !== undefined ? true : false);
     } else {
       const index = userinfo_name.name.split('[')[1].split('')[0];
-
+      // alert(index);
       if (userinfo.relatives[index]) {
-        setalternate1(userinfo.relatives[index].past_phones[0] ? true : false);
-        setalternate2(userinfo.relatives[index].past_phones[1] ? true : false);
+        setalternate1(
+          userinfo.relatives[index].past_phones[0] !== undefined ? true : false,
+        );
+        setalternate2(
+          userinfo.relatives[index].past_phones[1] !== undefined ? true : false,
+        );
       } else {
         setalternate1(false);
         setalternate2(false);

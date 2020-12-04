@@ -1,0 +1,86 @@
+var mock_data = {
+  data: [
+    {
+      age: userinfo_name.age || '',
+      aliases: userinfo_name.aliases || '',
+      birthdate: userinfo_name.birthdate || '',
+      current_phone: userinfo_name.current_phone || '',
+      current_address: {
+        city: userinfo_name.city || '',
+        country: userinfo_name.country || '',
+        state: userinfo_name.state || '',
+        street: userinfo_name.street || '',
+        zip_code: userinfo_name.zip_code || '',
+      },
+      current_email: userinfo_name.current_email || '',
+      gender: userinfo_name.gender || '',
+      id: userinfo_name.id,
+      name: userinfo_name.name || '',
+      past_adresses: [
+        {
+          city: userinfo_name.past_adresses[0].city || '',
+          country: userinfo_name.past_adresses[0].country || '',
+          id: userinfo_name.passsssss5,
+          state: 'Texas',
+          street: 'Past Street 1',
+          zip_code: '5845656',
+        },
+        {
+          city: 'Past City 2',
+          country: 'United States',
+          id: 6,
+          state: 'Texas',
+          street: 'Past Street 2',
+          zip_code: '8956516',
+        },
+      ],
+      past_emails: ['past_update@past.com', 'past_update@past.com'],
+      past_phones: ['999999'],
+      relatives: [
+        {
+          age: 21,
+          aliases: ['Johny', 'Woody'],
+          birthdate: '10/18/1981',
+          current_phone: '66587412',
+
+          current_address: {
+            city: 'Test City',
+            country: 'United States',
+            state: 'Texas',
+            street: 'Test Street',
+            zip_code: '8000',
+          },
+          current_email: 'kwood@test.com',
+          external_id: '89416',
+          gender: 'M',
+          id: 1,
+          name: 'Kevin Wood',
+          past_adresses: [
+            {
+              city: 'Past City 1',
+              country: 'United States',
+              id: 5,
+              state: 'Texas',
+              street: 'Past Street 1',
+              zip_code: '5845656',
+            },
+            {
+              city: 'Past City 2',
+              country: 'United States',
+              id: 6,
+              state: 'Texas',
+              street: 'Past Street 2',
+              zip_code: '8956516',
+            },
+          ],
+          past_emails: ['past_update@past.com', 'past_update@past.com'],
+          past_phones: ['999999'],
+          relatives: ['Uncle Ben', 'Aunt Mary'],
+        },
+      ],
+    },
+  ],
+  msg: 'MOCK DATA!!!',
+  success: true,
+};
+module.exports = { mock_data };

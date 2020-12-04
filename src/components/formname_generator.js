@@ -49,6 +49,7 @@ const userform_name = user_info => {
         past_emails: `relatives[${index}].past_emails`,
         gender: `relatives[${index}].gender`,
         birthdate: `relatives[${index}].birthdate`,
+        client_id: `relatives[${index}].client_id`,
         current_address: {
           city: `relatives[${index}].current_address.city`,
           state: `relatives[${index}].current_address.state`,

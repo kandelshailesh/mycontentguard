@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
-export default function Header({ src }) {
+export default function Homepage_Header({ src }) {
   const [active, setActive] = useState('submit-removals');
   const [width, setWidth] = useState(window.innerWidth);
   const [link, setLink] = useState(false);
@@ -24,50 +24,57 @@ export default function Header({ src }) {
           className={`header__linkgroup ${
             width > 1000 ? 'header__desktop_display' : 'header__mobile__display'
           }`}
-          style={{ display: width < 1000 && link ? 'flex' : '' }}
+          style={{
+            display: width < 1000 && link ? 'flex' : '',
+          }}
         >
           <Link
-            to='/submit-removals'
-            onClick={() => setActive('submit-removals')}
+            to='/'
+            onClick={() => setActive('home')}
             className={`header__linkgroup__link
-              ${
-                active === 'submit-removals'
-                  ? 'header__linkgroup__link--active'
-                  : ''
-              }`}
+              ${active === 'home' ? 'header__linkgroup__link--active' : ''}`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
-            Submit Removals
+            Home
           </Link>
 
           <Link
-            onClick={() => setActive('removal-progress')}
-            to='/removal-progress'
+            onClick={() => setActive('about-us')}
+            to='/about-us'
             className={`header__linkgroup__link display
-            ${
-              active === 'removal-progress'
-                ? 'header__linkgroup__link--active'
-                : ''
-            }`}
+            ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
-            Removal Progress
+            About
           </Link>
           <Link
-            to='/user-profile'
-            onClick={() => setActive('user-profile')}
+            to='https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted'
+            onClick={() => setActive('register')}
             className={`header__linkgroup__link
               ${
-                active === 'user-profile'
-                  ? 'header__linkgroup__link--active'
-                  : ''
+                active === 'register' ? 'header__linkgroup__link--active' : ''
               }`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
-            Edit Account
+            Sign Up
+          </Link>
+          <Link
+            onClick={() => setActive('my-account')}
+            to='/my-account/'
+            className={`header__linkgroup__link
+            ${
+              active === 'my-account' ? 'header__linkgroup__link--active' : ''
+            }`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+          >
+            Login
           </Link>
           <Link
             onClick={() => setActive('contact')}
             to='/contact'
             className={`header__linkgroup__link
             ${active === 'contact' ? 'header__linkgroup__link--active' : ''}`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Contact
           </Link>
@@ -76,13 +83,13 @@ export default function Header({ src }) {
           <MenuOutlined
             onClick={() => setLink(!link)}
             className='header__menu'
-            style={{ color: 'black', fontSize: 25 }}
+            style={{ color: 'white', fontSize: 25 }}
           />
         ) : (
           <CloseOutlined
             onClick={() => setLink(!link)}
             className='header__menu'
-            style={{ color: 'black', fontSize: 25 }}
+            style={{ color: 'white', fontSize: 25 }}
           />
         )}
       </div>
