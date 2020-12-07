@@ -7,11 +7,17 @@ import Floating_Button from './components/floating_button';
 import Contact_Modal from './components/contact_modal';
 import { BrowserRouter } from 'react-router-dom';
 import Homepage from './components/homepage';
+// import store from 'store';
 import './css/main.css';
+import ValidateToken from './utils/validatetoken';
 
 function App() {
   const [support, setsupport] = useState(false);
-  const [is_login, setlogin] = useState(false);
+  const [is_login, setlogin] = useState(() => {
+    const [result] = ValidateToken();
+    if (result) return true;
+    else return false;
+  });
   return (
     <BrowserRouter basename='/members'>
       {is_login ? (

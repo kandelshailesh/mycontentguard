@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import 'antd/dist/antd.css';
 import Header from './header';
 import Homepage_Header from './homepage_header';
+import { Carousel } from 'antd';
+import { customerReview } from '../constants/index';
 
 export default function Homepage() {
   const [plan, setplan] = useState('monthly');
@@ -8,6 +11,50 @@ export default function Homepage() {
   const [seemore_annualfamily, set_seemore_annualfamily] = useState(false);
   const [seemore_monthlysingle, set_seemore_monthlysingle] = useState(false);
   const [seemore_monthlyfamily, set_seemore_monthlyfamily] = useState(false);
+  const [counter, set_counter] = useState(50000);
+  const [total_review, settotal_review] = useState(5000);
+  const [isMobile, setisMobile] = useState(false);
+
+  // const width = window.innerWidth;
+
+  // const [currentCount, setCount] = useState(10);
+  const timer = () => {
+    set_counter(counter + Math.floor(Math.random() * 10000));
+    settotal_review(counter);
+  };
+  useEffect(() => {
+    if (window.innerWidth < 800) {
+      setisMobile(true);
+    } else {
+      setisMobile(false);
+    }
+  });
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 800) {
+        setisMobile(true);
+      } else {
+        setisMobile(false);
+      }
+      // setWidth(window.innerWidth);
+    });
+  }, [window.innerWidth]);
+  useEffect(() => {
+    if (counter > 250000) {
+      settotal_review('250,000');
+      return;
+    }
+    const id = setInterval(timer, 10);
+    return () => clearInterval(id);
+  }, [counter]);
+
+  const props = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: isMobile ? 1 : 3,
+    slidesToScroll: 1,
+  };
 
   return (
     <div className='homepage'>
@@ -943,13 +990,34 @@ export default function Homepage() {
         <div className='section9__heading3'>
           <label>
             Over
-            <br /> 25000
+            <br /> {total_review}
           </label>
         </div>
         <label className='section9__heading4'>Removals & Counting</label>
 
         {/* <p></p> */}
       </div>
+      <Carousel {...props} autoplay className='section9__carousel'>
+        {customerReview.map((value, index, array) => (
+          <div className='carousel__slicker'>
+            <div className='slicker__content'>
+              <p>{value.reviewContent}</p>
+            </div>
+            <div className='slicker__bottom'>
+              <img
+                className='bottom__icon'
+                src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/10/insurance-01.svg'
+                data-src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/10/insurance-01.svg'
+                alt='Hailey Stans'
+              />
+              <div className='bottom__customer'>
+                <label className='customer__name'>{value.reviewerName}</label>
+                <label className='verified__customer'>Verified Customer</label>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Carousel>
       <div className='homepage__section10'>
         <div className='section10__heading1'>
           <p className='heading1__title'>Why myContentGuard?</p>

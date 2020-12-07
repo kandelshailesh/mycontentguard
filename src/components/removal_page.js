@@ -9,6 +9,8 @@ import { axiosInstance } from './axiosInstance';
 import { Formik, Field, Form } from 'formik';
 import { userform_name } from './formname_generator';
 import { mock_data } from './dummy_data';
+import getUserID from '../utils/getUserID';
+
 const { TabPane } = Tabs;
 export default function Removal_Page(props) {
   const [firsttab, setFirstTab] = useState(
@@ -52,7 +54,7 @@ export default function Removal_Page(props) {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get('/api/client/1')
+      .get(`/api/client/${getUserID()}`)
       .then(data => {
         console.log(data);
         const userinfo_api = data.data.data;
