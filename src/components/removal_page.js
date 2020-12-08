@@ -47,6 +47,7 @@ const tabindex = {
 };
 
 const { TabPane } = Tabs;
+const user_id = getUserID();
 export default function Removal_Page(props) {
   // alert(JSON.stringify(props, null, 2));
   const [firsttab, setFirstTab] = useState(() => {
@@ -78,8 +79,6 @@ export default function Removal_Page(props) {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const user_id = getUserID();
-
     axiosInstance
       .get(`/api/client/${user_id}`)
       .then(data => {
@@ -198,7 +197,7 @@ export default function Removal_Page(props) {
           Number(tabindex[firsttab])
         ].aliases.split(',');
       }
-      values.relatives[Number(tabindex[firsttab])].client_id = 1;
+      values.relatives[Number(tabindex[firsttab])].client_id = user_id;
     }
     // var client_data;
     // if (tabindex[firsttab] === undefined) {
@@ -257,8 +256,9 @@ export default function Removal_Page(props) {
     //     ],
     //   };
     // }
+
     axiosInstance
-      .patch('/api/client/1', {
+      .patch(`/api/client/${user_id}`, {
         ...values,
       })
       .then(result => {
