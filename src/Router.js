@@ -83,31 +83,29 @@ const Router = props => {
           />
           {/* { */}
           <Suspense fallback={<Spin indicator={antIcon} />}>
-            <Switch>
-              {routes.map(route => {
-                if (route.authorize)
-                  return (
-                    <PrivateRoute
-                      authorized={result}
-                      key={route.path}
-                      keys={route.path}
-                      exact={route.exact}
-                      {...route}
-                    />
-                  );
+            {routes.map(route => {
+              if (route.authorize)
                 return (
-                  <Route
-                    path={route.path}
-                    component={route.component}
+                  <PrivateRoute
+                    authorized={result}
                     key={route.path}
+                    keys={route.path}
                     exact={route.exact}
+                    {...route}
                   />
                 );
-              })}
-            </Switch>
-
-            {/* <Route path='*' component={NotFoundPage} /> */}
+              return (
+                <Route
+                  path={route.path}
+                  component={route.component}
+                  key={route.path}
+                  exact={route.exact}
+                />
+              );
+            })}
+            {/* </Switch> */}
           </Suspense>
+          <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
     </Suspense>

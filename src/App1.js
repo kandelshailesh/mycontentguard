@@ -14,13 +14,13 @@ import { withRouter } from 'react-router';
 
 function App(props) {
   const [support, setsupport] = useState(false);
-  // const [is_login, setlogin] = useState(() => {
-  //   const [result] = ValidateToken();
-  //   if (result) return true;
-  //   else return true;
-  // });
+  const [is_login, setlogin] = useState(() => {
+    const [result] = ValidateToken();
+    if (result) return true;
+    else return false;
+  });
   // alert(JSON.stringify(props, null, 2));
-  const [is_login, setlogin] = useState(true);
+  // const [is_login, setlogin] = useState(true);
   return (
     // <BrowserRouter basename='/'>
     is_login ? (
