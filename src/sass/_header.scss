@@ -57,6 +57,11 @@
     align-items: center;
     border: 1px solid #eee;
     margin-left: 0px !important;
+
+    > a > img {
+      width: 220px !important;
+      margin-top: 5px;
+    }
   }
   .header__linkgroup {
     display: flex;

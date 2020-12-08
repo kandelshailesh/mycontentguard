@@ -5,6 +5,6 @@ export default function getUserID() {
   if (result) {
     return user_id;
   } else {
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 }
