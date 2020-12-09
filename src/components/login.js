@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { axiosInstance } from '../utils/axiosInstance';
 import { MCG } from '../index';
 import { Redirect } from 'react-router-dom';
-import  store  from 'store';
+import store from 'store';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required('Please enter this field'),
