@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Footer() {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(() => window.innerWidth);
   useEffect(() => {
     window.addEventListener('resize', () => setWidth(window.innerWidth));
   }, [width]);
@@ -76,13 +76,17 @@ export default function Footer() {
             <span>
               <i className='fa fa-envelope'></i>
             </span>
-            <a href='mailto:info@mycontentguard.com'>info@mycontentguard.com</a>
+            <a rel='noreferrer' href='mailto:info@mycontentguard.com'>
+              info@mycontentguard.com
+            </a>
           </div>
           <div className='contact-line'>
             <span>
               <i className='fa fa-phone'></i>
             </span>
-            <a href='tel:18652259998'>+1 (865) 225-9998</a>
+            <a rel='noreferrer' href='tel:18652259998'>
+              +1 (865) 225-9998
+            </a>
           </div>
           <div className='contact-line' style={{ marginBottom: 30 }}>
             <span>
@@ -97,13 +101,18 @@ export default function Footer() {
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/'>Home</a>
+            <a rel='noreferrer' href='https://mycontentguard.com/'>
+              Home
+            </a>
           </div>
           <div className='contact-line'>
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/business-solutions/'>
+            <a
+              rel='noreferrer'
+              href='https://mycontentguard.com/business-solutions/'
+            >
               Business
             </a>
           </div>
@@ -111,31 +120,42 @@ export default function Footer() {
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/about-us/'>About Us</a>
+            <a rel='noreferrer' href='https://mycontentguard.com/about-us/'>
+              About Us
+            </a>
           </div>
           <div className='contact-line'>
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/contact/'>Contact</a>
+            <a rel='noreferrer' href='https://mycontentguard.com/contact/'>
+              Contact
+            </a>
           </div>
           <div className='contact-line'>
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/my-account/'>Login</a>
+            <a rel='noreferrer' href='https://mycontentguard.com/my-account/'>
+              Login
+            </a>
           </div>
           <div className='contact-line'>
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/blog/'>Blog</a>
+            <a rel='noreferrer' href='https://mycontentguard.com/blog/'>
+              Blog
+            </a>
           </div>
           <div className='contact-line' style={{ marginBottom: 20 }}>
             <span>
               <i className='fa fa-caret-right'></i>
             </span>
-            <a href='https://mycontentguard.com/affiliate-program/'>
+            <a
+              rel='noreferrer'
+              href='https://mycontentguard.com/affiliate-program/'
+            >
               Affiliate Program
             </a>
           </div>
@@ -185,8 +205,13 @@ export default function Footer() {
         <div className='line'></div>
         <div className='footer__bottom'>
           <div className='bottom__privacy'>
-            <a href='/privacy-policy'>Privacy Policy</a>|
-            <a href='/privacy-policy'>Terms of Service</a>
+            <a rel='noreferrer' href='/privacy-policy'>
+              Privacy Policy
+            </a>
+            |
+            <a rel='noreferrer' href='/privacy-policy'>
+              Terms of Service
+            </a>
           </div>
           <div className='bottom__copyright'>
             © 2020 myContentGuard. All Rights Reserved.

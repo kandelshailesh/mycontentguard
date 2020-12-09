@@ -12,7 +12,7 @@ export const PrivateRoute = ({
   keys,
   exact,
 }) => {
-  alert(path);
+  //   alert(path);
   return (
     <Route
       path={path}
@@ -23,7 +23,10 @@ export const PrivateRoute = ({
         if (authorized)
           return (
             <div className='main_container'>
-              <Header src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/07/mycontentguardlogosvg.svg' />
+              <Header
+                {...props}
+                src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/07/mycontentguardlogosvg.svg'
+              />
               <div className='main_content'>
                 <Component {...props} />
               </div>

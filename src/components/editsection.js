@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Dropdown, Menu, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Submit_Removals from './submit_removal';
-import { axiosInstance } from './axiosInstance';
+import { axiosInstance } from '../utils/axiosInstance';
 import getUserID from '../utils/getUserID';
 import { isNaN } from 'formik';
+import { MCG } from '../index';
+import { getMember } from './get_member';
 
 export default function EditSection() {
   const [title, settitle] = useState('DASHBOARD');
   const [visible, setvisible] = useState(false);
   const [name, setname] = useState('');
-
+  const { permission_level, user_id } = useContext(MCG);
   useEffect(() => {
-    const user_id = getUserID();
     if (!isNaN(user_id)) {
       axiosInstance
         .get(`/api/client/${user_id}`)
@@ -114,7 +115,9 @@ export default function EditSection() {
               >
                 <button>Submit Your Removal Info</button>
               </Link>
-              <Link
+
+              {getMember(permission_level)}
+              {/* <Link
                 to={{
                   pathname: '/removal-pages/family-member-1/',
                   state: {
@@ -143,7 +146,7 @@ export default function EditSection() {
                 }}
               >
                 <button>Submit Family Member #3</button>
-              </Link>
+              </Link> */}
               <Link to='/removal-pages/additional-information/'>
                 <button className='buttonlist__additional'>
                   Add Additional Removals

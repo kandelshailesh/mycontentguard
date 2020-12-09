@@ -1,9 +1,9 @@
 import ValidateToken from './validatetoken';
 
 export default function getUserID() {
-  const [result, user_id] = ValidateToken();
+  const [result, userinfo] = ValidateToken();
   if (result) {
-    return user_id;
+    return userinfo.user_id;
   } else {
     // window.location.href = '/';
   }

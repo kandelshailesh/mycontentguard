@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Tabs, message } from 'antd';
 import Family_Member from './family_member';
 import Address from './address';
 import Phone from './phone';
-import { axiosInstance } from './axiosInstance';
+import { axiosInstance } from '../utils/axiosInstance';
 import { Formik, Field, Form } from 'formik';
 import { userform_name } from './formname_generator';
 import { mock_data } from './dummy_data';
 import getUserID from '../utils/getUserID';
+import { MCG } from '../index';
 const nametotab = {
   'Main User Info': 'user-info',
   'Family Member#1': 'family-member-1',
@@ -46,8 +47,11 @@ const tabindex = {
   'Family Member#9': 8,
 };
 
+const perm_level = { 1: 0, 2: 1, 3: 3, 4: 3 };
+
 const { TabPane } = Tabs;
-const user_id = getUserID();
+// const user_id = getUserID();
+
 export default function Removal_Page(props) {
   // alert(JSON.stringify(props, null, 2));
   const [firsttab, setFirstTab] = useState(() => {
@@ -62,6 +66,7 @@ export default function Removal_Page(props) {
   const [userinfo, setUserInfo] = useState('');
   const [dummy_userinfo, set_dummy_userinfo] = useState('');
   const [userinfo_name, setuserinfo_name] = useState('');
+  const { user_id, permission_level } = React.useContext(MCG);
 
   useEffect(() => {
     if (props.location.state) {
