@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import {
@@ -7,6 +7,8 @@ import {
   MinusOutlined,
 } from '@ant-design/icons';
 import { Collapse } from 'antd';
+import { MCG } from '../index';
+import { getMember } from './get_member';
 
 const { Panel } = Collapse;
 export default function Submit_Removal() {
@@ -14,6 +16,8 @@ export default function Submit_Removal() {
     window.scrollTo(0, 0);
     document.title = 'Submit Removal | myContentGuard';
   }, []);
+  const { permission_level } = React.useContext(MCG);
+
   return (
     <div className='submit_removal'>
       <div className='submit_removal__left'>
@@ -40,7 +44,11 @@ export default function Submit_Removal() {
           >
             <button>Submit Your Removal Info</button>
           </Link>
-          <Link
+
+          {getMember(permission_level)}
+
+          {/* {relatives} */}
+          {/* <Link
             to={{
               pathname: '/removal-pages/family-member-1/',
               state: {
@@ -69,7 +77,7 @@ export default function Submit_Removal() {
             }}
           >
             <button>Submit Family Member #3</button>
-          </Link>
+          </Link> */}
           <Link to='/removal-pages/additional-information/'>
             <button className='buttonlist__additional'>
               Add Additional Removals

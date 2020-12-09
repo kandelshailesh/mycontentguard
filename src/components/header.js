@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
-export default function Header({ src }) {
-  const [active, setActive] = useState('submit-removals');
+export default function Header(props) {
+  // alert(JSON.stringify(props, null, 2));
+  const [active, setActive] = useState(() => {
+    return props.location.pathname.split('/')[1];
+  });
   const [width, setWidth] = useState(window.innerWidth);
   const [link, setLink] = useState(false);
 
@@ -11,13 +14,19 @@ export default function Header({ src }) {
     window.addEventListener('resize', () => {
       setWidth(window.innerWidth);
     });
-  }, [width]);
+    setActive(props.location.pathname.split('/')[1]);
+  }, [width, active]);
   return (
     <>
       <div className='header'>
         <div className='header__logo'>
           <Link to='/'>
-            <img width='300' height='37' src={src} alt='myContentGuard Logo' />
+            <img
+              width='300'
+              height='37'
+              src={props.src}
+              alt='myContentGuard Logo'
+            />
           </Link>
         </div>
         <div
@@ -31,7 +40,7 @@ export default function Header({ src }) {
             onClick={() => setActive('submit-removals')}
             className={`header__linkgroup__link
               ${
-                active === 'submit-removals'
+                active === 'submit-removals' || active === ''
                   ? 'header__linkgroup__link--active'
                   : ''
               }`}

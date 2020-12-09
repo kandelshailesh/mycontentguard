@@ -1,7 +1,9 @@
+// import React from 'react';
 import store from 'store';
 import jwt_decode from 'jwt-decode';
 
 export default function ValidateToken() {
+  
   var token = store.get('token');
 
   if (token) {
@@ -10,7 +12,7 @@ export default function ValidateToken() {
       if (Date.now() >= decoded.exp * 1000) {
         return [false];
       }
-      return [true, decoded.user_id];
+      return [true, decoded];
     } catch (e) {
       return [false];
     }

@@ -1,41 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { Tabs } from 'antd';
+import { Tabs, message } from 'antd';
 import Family_Member from './family_member';
 import Address from './address';
 import Phone from './phone';
-import { axiosInstance } from './axiosInstance';
+import { axiosInstance } from '../utils/axiosInstance';
 import { Formik, Field, Form } from 'formik';
 import { userform_name } from './formname_generator';
 import { mock_data } from './dummy_data';
 import getUserID from '../utils/getUserID';
+import { MCG } from '../index';
+const nametotab = {
+  'Main User Info': 'user-info',
+  'Family Member#1': 'family-member-1',
+  'Family Member#2': 'family-member-2',
+  'Family Member#3': 'family-member-3',
+  'Family Member#4': 'family-member-4',
+  'Family Member#5': 'family-member-5',
+  'Family Member#6': 'family-member-6',
+  'Family Member#7': 'family-member-7',
+  'Family Member#8': 'family-member-8',
+  'Family Member#9': 'family-member-9',
+};
+const tablist = {
+  'user-info': 'Main User Info',
+  'family-member-1': 'Family Member#1',
+  'family-member-2': 'Family Member#2',
+  'family-member-3': 'Family Member#3',
+  'family-member-4': 'Family Member#4',
+  'family-member-5': 'Family Member#5',
+  'family-member-6': 'Family Member#6',
+  'family-member-7': 'Family Member#7',
+  'family-member-8': 'Family Member#8',
+  'family-member-9': 'Family Member#9',
+};
+const tabindex = {
+  'Family Member#1': 0,
+  'Family Member#2': 1,
+  'Family Member#3': 2,
+  'Family Member#4': 3,
+  'Family Member#5': 4,
+  'Family Member#6': 5,
+  'Family Member#7': 6,
+  'Family Member#8': 7,
+  'Family Member#9': 8,
+};
+
+const perm_level = { 1: 0, 2: 1, 3: 3, 4: 3 };
 
 const { TabPane } = Tabs;
+// const user_id = getUserID();
+
 export default function Removal_Page(props) {
-  const [firsttab, setFirstTab] = useState(
-    props.location.state.value || tablist[props.match.params.value],
-  );
+  // alert(JSON.stringify(props, null, 2));
+  const [firsttab, setFirstTab] = useState(() => {
+    if (props.location?.state?.value) {
+      return props.location.state.value;
+    } else if (props.match.params.value) {
+      return tablist[props.match.params.value];
+    }
+
+    // props.location.state.value || tablist[props.match.params.value],
+  });
   const [userinfo, setUserInfo] = useState('');
   const [dummy_userinfo, set_dummy_userinfo] = useState('');
   const [userinfo_name, setuserinfo_name] = useState('');
-  const nametotab = {
-    'Main User Info': 'user-info',
-    'Family Member#1': 'family-member-1',
-    'Family Member#2': 'family-member-2',
-    'Family Member#3': 'family-member-3',
-  };
-  const tablist = {
-    'user-info': 'Main User Info',
-    'family-member-1': 'Family Member#1',
-    'family-member-2': 'Family Member#2',
-    'family-member-3': 'Family Member#3',
-  };
-  const tabindex = {
-    'Family Member#1': 0,
-    'Family Member#2': 1,
-    'Family Member#3': 2,
-  };
+  const { user_id, permission_level } = React.useContext(MCG);
 
   useEffect(() => {
     if (props.location.state) {
@@ -54,7 +85,7 @@ export default function Removal_Page(props) {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get(`/api/client/${getUserID()}`)
+      .get(`/api/client/${user_id}`)
       .then(data => {
         console.log(data);
         const userinfo_api = data.data.data;
@@ -71,33 +102,64 @@ export default function Removal_Page(props) {
                 '-' +
                 ('0' + new Date(birthdate).getDate()).slice(-2)
               : '';
+            userinfo_api.aliases = userinfo_api.aliases.join(',');
+            userinfo_api.past_emails = userinfo_api.past_emails.join(',');
 
             break;
           case 'Family Member#1':
-          case 'Family Member #2':
-          case 'Family Member #3':
-            userinfo_api.relatives[tabindex[firsttab]].birthdate = userinfo_api
-              .relatives[tabindex[firsttab]].birthdate
-              ? new Date(
-                  userinfo_api.relatives[tabindex[firsttab]].birthdate,
-                ).getFullYear() +
-                '-' +
-                (
-                  '0' +
-                  (new Date(
+          case 'Family Member#2':
+          case 'Family Member#3':
+            if (userinfo_api.relatives[tabindex[firsttab]]) {
+              userinfo_api.relatives[
+                tabindex[firsttab]
+              ].birthdate = userinfo_api.relatives[tabindex[firsttab]].birthdate
+                ? new Date(
                     userinfo_api.relatives[tabindex[firsttab]].birthdate,
-                  ).getMonth() +
-                    1)
-                ).slice(-2) +
-                '-' +
-                (
-                  '0' +
-                  new Date(
-                    userinfo_api.relatives[tabindex[firsttab]].birthdate,
-                  ).getDate()
-                ).slice(-2)
-              : '';
-
+                  ).getFullYear() +
+                  '-' +
+                  (
+                    '0' +
+                    (new Date(
+                      userinfo_api.relatives[tabindex[firsttab]].birthdate,
+                    ).getMonth() +
+                      1)
+                  ).slice(-2) +
+                  '-' +
+                  (
+                    '0' +
+                    new Date(
+                      userinfo_api.relatives[tabindex[firsttab]].birthdate,
+                    ).getDate()
+                  ).slice(-2)
+                : '';
+              userinfo_api.relatives[
+                tabindex[firsttab]
+              ].aliases = userinfo_api.aliases.join(',');
+              userinfo_api.relatives[
+                tabindex[firsttab]
+              ].past_emails = userinfo_api.past_emails.join(',');
+            } else {
+              userinfo_api.relatives[tabindex[firsttab]] = {
+                age: '',
+                aliases: '',
+                birthdate: '',
+                current_phone: '',
+                current_address: {
+                  city: '',
+                  country: '',
+                  state: '',
+                  street: '',
+                  zip_code: '',
+                },
+                current_email: '',
+                gender: '',
+                client_id: userinfo_api.id,
+                name: '',
+                past_emails: [],
+                past_phones: [],
+                past_adresses: [],
+              };
+            }
             break;
         }
         setUserInfo(userinfo_api);
@@ -107,10 +169,6 @@ export default function Removal_Page(props) {
   }, []);
 
   const submit_userinfo = values => {
-    // await new Promise(resolve => setTimeout(resolve, 500));
-    // alert(JSON.stringify(values, null, 2));
-    console.log(values);
-
     var birthdate;
     if (tabindex[firsttab] === undefined) {
       birthdate = values.birthdate ? values.birthdate.split('-') : '';
@@ -118,11 +176,11 @@ export default function Removal_Page(props) {
         values.birthdate =
           birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0];
       }
-      if (values.past_emails) {
-        values.past_emails = values.past_emails.split(',');
-      }
       if (values.aliases) {
         values.aliases = values.aliases.split(',');
+      }
+      if (values.past_emails) {
+        values.past_emails = values.past_emails.split(',');
       }
     } else if (values.relatives[Number(tabindex[firsttab])]) {
       if (values.relatives[Number(tabindex[firsttab])].birthdate) {
@@ -137,14 +195,14 @@ export default function Removal_Page(props) {
           Number(tabindex[firsttab])
         ].past_emails = values.relatives[
           Number(tabindex[firsttab])
-        ].past_emails.join(',');
+        ].past_emails.split(',');
       }
       if (values.relatives[Number(tabindex[firsttab])].aliases) {
         values.relatives[Number(tabindex[firsttab])].aliases = values.relatives[
           Number(tabindex[firsttab])
         ].aliases.split(',');
       }
-      values.relatives[Number(tabindex[firsttab])].client_id = 1;
+      values.relatives[Number(tabindex[firsttab])].client_id = user_id;
     }
     // var client_data;
     // if (tabindex[firsttab] === undefined) {
@@ -203,53 +261,54 @@ export default function Removal_Page(props) {
     //     ],
     //   };
     // }
+
     axiosInstance
-      .patch('/api/client/1', {
+      .patch(`/api/client/${user_id}`, {
         ...values,
       })
       .then(result => {
         console.log(result);
+        message.success('User info updated successfully');
         if (values.relatives[Number(tabindex[firsttab])]) {
           if (values.relatives[Number(tabindex[firsttab])].birthdate) {
             values.relatives[
               Number(tabindex[firsttab])
             ].birthdate = birthdate.join('-');
           }
-          if (values.relatives[Number(tabindex[firsttab])].past_emails) {
-            values.relatives[
-              Number(tabindex[firsttab])
-            ].past_emails = values.relatives[
-              Number(tabindex[firsttab])
-            ].past_emails.join(',');
-          }
-          if (values.relatives[Number(tabindex[firsttab])].aliases) {
-            values.relatives[
-              Number(tabindex[firsttab])
-            ].aliases = values.relatives[
-              Number(tabindex[firsttab])
-            ].aliases.join(',');
-          }
+          // if (values.relatives[Number(tabindex[firsttab])].past_emails) {
+          //   values.relatives[
+          //     Number(tabindex[firsttab])
+          //   ].past_emails = values.relatives[
+          //     Number(tabindex[firsttab])
+          //   ].past_emails.join(',');
+          // }
+          // if (values.relatives[Number(tabindex[firsttab])].aliases) {
+          //   values.relatives[
+          //     Number(tabindex[firsttab])
+          //   ].aliases = values.relatives[
+          //     Number(tabindex[firsttab])
+          //   ].aliases.join(',');
+          // }
         } else if (tabindex[firsttab] === undefined) {
           if (values.birthdate) {
             values.birthdate = birthdate.join('-');
           }
-          if (values.aliases) {
-            values.aliases = values.aliases.join(',');
-          }
-          if (values.past_emails) {
-            values.past_emails = values.past_emails.join(',');
-          }
+          // if (values.aliases) {
+          //   values.aliases = values.aliases.join(',');
+          // }
+          // if (values.past_emails) {
+          //   values.past_emails = values.past_emails.join(',');
+          // }
         }
-        alert('Updated successfully');
       })
-      .catch(err => console.log(err));
+      .catch(err => message.error('Please try again !'));
   };
   return (
     <>
       <div className='removal_page'>
         <div className='removal_page__left'>
           <p className='left__heading1'>
-            <Link to='/'>
+            <Link to='/submit-removals'>
               <button>
                 <ArrowLeftOutlined
                   style={{ color: 'white', fontWeight: 'bold', marginRight: 5 }}

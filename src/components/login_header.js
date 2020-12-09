@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
-export default function Homepage_Header({ src }) {
-  const [active, setActive] = useState('submit-removals');
+export default function Header(props) {
+  // alert(JSON.stringify(props, null, 2));
+  const [active, setActive] = useState(() => {
+    return props.location.pathname.split('/')[1];
+  });
   const [width, setWidth] = useState(window.innerWidth);
   const [link, setLink] = useState(false);
 
@@ -11,72 +14,75 @@ export default function Homepage_Header({ src }) {
     window.addEventListener('resize', () => {
       setWidth(window.innerWidth);
     });
-  }, [width]);
+    setActive(props.location.pathname.split('/')[1]);
+  }, [width, active]);
   return (
     <>
       <div className='header'>
         <div className='header__logo'>
           <Link to='/'>
-            <img width='300' height='37' src={src} alt='myContentGuard Logo' />
+            <img
+              width='300'
+              height='37'
+              src={props.src}
+              alt='myContentGuard Logo'
+            />
           </Link>
         </div>
         <div
           className={`header__linkgroup ${
             width > 1000 ? 'header__desktop_display' : 'header__mobile__display'
           }`}
-          style={{
-            display: width < 1000 && link ? 'flex' : '',
-          }}
+          style={{ display: width < 1000 && link ? 'flex' : '' }}
         >
           <Link
             to='/'
             onClick={() => setActive('home')}
             className={`header__linkgroup__link
               ${active === 'home' ? 'header__linkgroup__link--active' : ''}`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Home
           </Link>
 
           {/* <Link
-            onClick={() => setActive('about-us')}
-            to='/about-us'
+            // onClick={() => setActive('about-us')}
+            to='https://mycontentguard.com/about-us/'
             className={`header__linkgroup__link display
             ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            About
-          </Link> */}
+            // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+          > */}
           <a
             className={`header__linkgroup__link display
             ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
             href='https://mycontentguard.com/about-us/'
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             About
           </a>
+          {/* </Link> */}
           {/* <Link
-            to='https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted'
+            to={{
+              pathname:
+                'https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted',
+            }}
+            target='_blank'
             onClick={() => setActive('register')}
             className={`header__linkgroup__link
               ${
                 active === 'register' ? 'header__linkgroup__link--active' : ''
               }`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            Sign Up
-          </Link> */}
+            // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+          > */}
           <a
             className={`header__linkgroup__link
               ${
                 active === 'register' ? 'header__linkgroup__link--active' : ''
               }`}
             href='https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted'
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Sign Up
           </a>
-
+          {/* </Link> */}
           <Link
             onClick={() => setActive('my-account')}
             to='/my-account/'
@@ -84,7 +90,7 @@ export default function Homepage_Header({ src }) {
             ${
               active === 'my-account' ? 'header__linkgroup__link--active' : ''
             }`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Login
           </Link>
@@ -93,30 +99,28 @@ export default function Homepage_Header({ src }) {
             to='/contact'
             className={`header__linkgroup__link
             ${active === 'contact' ? 'header__linkgroup__link--active' : ''}`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            Contact
-          </Link> */}
+            // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+          > */}
           <a
             className={`header__linkgroup__link display
             ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
             href='https://mycontentguard.com/contact/'
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Contact
           </a>
+          {/* </Link> */}
         </div>
         {!link ? (
           <MenuOutlined
             onClick={() => setLink(!link)}
             className='header__menu'
-            style={{ color: 'white', fontSize: 25 }}
+            style={{ color: 'black', fontSize: 25 }}
           />
         ) : (
           <CloseOutlined
             onClick={() => setLink(!link)}
             className='header__menu'
-            style={{ color: 'white', fontSize: 25 }}
+            style={{ color: 'black', fontSize: 25 }}
           />
         )}
       </div>

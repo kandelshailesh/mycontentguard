@@ -52,6 +52,7 @@
     justify-content: flex-start;
     max-height: 300px;
     box-shadow: 0 0 white;
+    height: 65px;
   }
   .header__logo {
     height: auto;
@@ -62,6 +63,10 @@
     align-items: center;
     border: 1px solid #eee;
     margin-left: 0px !important;
+  }
+  .header__logo > a > img {
+    width: 220px !important;
+    margin-top: 5px;
   }
   .header__linkgroup {
     display: flex;
@@ -5256,5 +5261,292 @@
   .homepage .homepage__section11 .section11__getstarted:hover {
     background-color: black;
     transition: background-color 0.5s ease-in-out;
+  }
+}
+
+.editsection {
+  width: 100%;
+  margin: 50px 20%;
+  box-shadow: 0px 0px 20px #eee;
+  padding: 40px 80px 30px 30px;
+}
+
+.editsection .editsection__username {
+  font-size: 18px;
+}
+
+.editsection .editsection__logout button {
+  padding: 8px 20px;
+  background-color: #0084ff;
+  border: 0;
+  color: white;
+  border-radius: 4px;
+}
+
+.editsection .editsection__dropdown {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  display: inline-block;
+  border: 2px solid #eee;
+  padding: 10px;
+  color: #0084ff;
+}
+
+.editsection hr {
+  background-color: #eee;
+  border: 1px solid #eee;
+  color: #eee;
+  margin-bottom: 20px;
+}
+
+.editsection > .submit_removal {
+  margin: 10px 0px;
+  width: 100%;
+}
+
+.editsection > .submit_removal > .submit_removal__left > .left__heading3 {
+  font-size: 16px;
+  text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+  .editsection {
+    width: 100%;
+    margin: 5px 10px;
+    box-shadow: 0px 0px 20px #eee;
+    padding: 20px 20px 30px 10px;
+  }
+  .editsection .editsection__username {
+    font-size: 16px;
+  }
+  .editsection .editsection__logout button {
+    padding: 6px 20px;
+    background-color: #0084ff;
+    border: 0;
+    color: white;
+    border-radius: 4px;
+  }
+  .editsection .editsection__dropdown {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    display: inline-block;
+    border: 2px solid #eee;
+    padding: 7px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: #0084ff;
+  }
+  .editsection hr {
+    background-color: #eee;
+    color: #eee;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .editsection > .submit_removal {
+    margin: 10px 0px;
+    width: 100%;
+  }
+  .editsection > .submit_removal > .submit_removal__left > .left__heading3 {
+    font-size: 16px;
+    text-align: left;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  margin-top: -70px;
+  font-family: 'Barlow', Sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(//mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/11/membersportalpreview2.jpg);
+  background-position: center center;
+  background-size: cover;
+  flex-direction: row;
+  padding: 100px 70px 100px 30px;
+  width: 100%;
+}
+
+.login .login__left {
+  color: white;
+  width: 50%;
+}
+
+.login .login__left .left__heading1 {
+  line-height: 1em;
+  font-size: 80px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.login .login__left .left__heading1 span {
+  color: #0084ff;
+}
+
+.login .login__left .left__heading2 {
+  font-size: 20px;
+  color: white;
+  opacity: 0.6;
+}
+
+.login .login__right {
+  display: flex;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.login .login__right .right__card {
+  width: 100%;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.login .login__right .right__card .card__heading {
+  padding: 20px;
+  font-size: 40px;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  box-shadow: none;
+  font-family: 'Barlow', Sans-serif;
+}
+
+.login .login__right .right__card .card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px 40px 20px;
+}
+
+.login .login__right .right__card .card__body input {
+  padding: 8px 20px;
+  border: none;
+  box-shadow: 0px 0px 5px #eee;
+  border: 1px solid #eee;
+  outline: none;
+}
+
+.login .login__right .right__card .card__body input::placeholder {
+  opacity: 0.7;
+}
+
+.login .login__right .right__card .card__body input + div {
+  color: red;
+  font-size: 15px;
+  padding-top: 10px;
+}
+
+.login .login__right .right__card .card__body .loginbtn {
+  background-color: #0084ff;
+  color: white;
+  padding: 15px 50px;
+  font-size: 20px;
+  border: none;
+  align-self: flex-start;
+}
+
+.login .login__right .right__card .card__body label.rememberme {
+  font-size: 16px;
+  color: black;
+}
+
+.login .login__right .right__card .card__body label.lostpassword {
+  color: #0084ff;
+  font-size: 17px;
+}
+
+.login .login__right .right__card .card__body p {
+  text-align: center;
+}
+
+.login .login__right .right__card .card__body p span {
+  color: #0084ff;
+}
+
+@media screen and (max-width: 800px) {
+  .login {
+    display: flex;
+    flex-direction: column-reverse;
+    font-family: 'Barlow', Sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url(//mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/11/membersportalpreview2.jpg);
+    background-position: center center;
+    background-size: cover;
+    padding: 100px 10px;
+    width: 100%;
+  }
+  .login .login__left {
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .login .login__left .left__heading1 {
+    line-height: 1em;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .login .login__left .left__heading1 span {
+    color: #0084ff;
+  }
+  .login .login__left .left__heading2 {
+    font-size: 20px;
+    color: white;
+    opacity: 0.6;
+  }
+  .login .login__right {
+    display: flex;
+    width: 100%;
+    margin-left: 0px;
+  }
+  .login .login__right .right__card {
+    width: 100%;
+    box-shadow: none;
+    background-color: white;
+    border-radius: 5px;
+  }
+  .login .login__right .right__card .card__heading {
+    padding: 10px;
+    font-size: 30px;
+    border-bottom: 2px solid #eee;
+    text-align: center;
+    box-shadow: none;
+    font-family: 'Barlow', Sans-serif;
+  }
+  .login .login__right .right__card .card__body {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 40px 20px;
+  }
+  .login .login__right .right__card .card__body input {
+    padding: 10px 15px;
+    color: var(--e-global-color-text);
+    border: none;
+    font-size: 15px;
+    box-shadow: 0px 0px 5px #eee;
+    border: 1px solid #eee;
+    outline: none;
+  }
+  .login .login__right .right__card .card__body input::placeholder {
+    opacity: 0.7;
+  }
+  .login .login__right .right__card .card__body .loginbtn {
+    background-color: #0084ff;
+    color: white;
+    padding: 10px 50px;
+    font-size: 20px;
+    border: none;
+    align-self: flex-start;
+  }
+  .login .login__right .right__card .card__body label.rememberme {
+    font-size: 16px;
+    color: black;
+  }
+  .login .login__right .right__card .card__body label.lostpassword {
+    color: #0084ff;
+    font-size: 15px;
+  }
+  .login .login__right .right__card .card__body p {
+    text-align: left;
+  }
+  .login .login__right .right__card .card__body p span {
+    color: #0084ff;
   }
 }
