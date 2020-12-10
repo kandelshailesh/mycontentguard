@@ -26,7 +26,7 @@ export default function Login(props) {
       .post('/api/login', values)
       .then(response => {
         const { success } = response.data;
-        alert(success);
+        // alert(success);
         if (success) {
           setloginerror(false);
           store.set('token', response.data.data);
