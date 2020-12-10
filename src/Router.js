@@ -17,7 +17,6 @@ import { withRouter } from 'react-router';
 
 const loadable = loader => React.lazy(loader); // added
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-// const baseURL = 'http://localhost:3002';
 
 const routes = [
   // System Pages

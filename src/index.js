@@ -7,7 +7,6 @@ import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import ValidateToken from './utils/validatetoken';
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-const perm_level = { 1: 0, 2: 1, 3: 3, 4: 3 };
 export const MCG = React.createContext();
 const [status, userinfo] = ValidateToken();
 
