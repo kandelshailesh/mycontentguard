@@ -2,7 +2,7 @@ import React, { Suspense, Provider } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import ValidateToken from './utils/validatetoken';
@@ -14,9 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <MCG.Provider value={status ? { status, ...userinfo } : { status }}>
       <Suspense fallback={<Spin indicator={antIcon} />}>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </Suspense>
     </MCG.Provider>
   </React.StrictMode>,
