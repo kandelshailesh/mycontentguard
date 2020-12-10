@@ -70,7 +70,7 @@ export default function Address({ userinfo, userinfo_name }) {
           ></Field>
           <Field
             placeholder='State'
-            name={userinfo_name.current_address.city}
+            name={userinfo_name.current_address.state}
             type='text'
           ></Field>
           <Field
