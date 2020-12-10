@@ -134,10 +134,14 @@ export default function Removal_Page(props) {
                 : '';
               userinfo_api.relatives[
                 tabindex[firsttab]
-              ].aliases = userinfo_api.aliases.join(',');
+              ].aliases = userinfo_api.relatives[
+                tabindex[firsttab]
+              ].aliases.join(',');
               userinfo_api.relatives[
                 tabindex[firsttab]
-              ].past_emails = userinfo_api.past_emails.join(',');
+              ].past_emails = userinfo_api.relatives[
+                tabindex[firsttab]
+              ].past_emails.join(',');
             } else {
               userinfo_api.relatives[tabindex[firsttab]] = {
                 age: '',
@@ -165,7 +169,7 @@ export default function Removal_Page(props) {
         setUserInfo(userinfo_api);
         set_dummy_userinfo(userinfo_api);
       })
-      .catch(err => console.log(err.error));
+      .catch(err => console.log(err));
   }, []);
 
   const submit_userinfo = values => {
@@ -176,11 +180,15 @@ export default function Removal_Page(props) {
         values.birthdate =
           birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0];
       }
-      if (values.aliases) {
+      if (values.aliases.length > 0) {
         values.aliases = values.aliases.split(',');
+      } else {
+        values.aliases = [];
       }
-      if (values.past_emails) {
+      if (values.past_emails > 0) {
         values.past_emails = values.past_emails.split(',');
+      } else {
+        values.past_emails = [];
       }
     } else if (values.relatives[Number(tabindex[firsttab])]) {
       if (values.relatives[Number(tabindex[firsttab])].birthdate) {
@@ -190,17 +198,21 @@ export default function Removal_Page(props) {
         values.relatives[Number(tabindex[firsttab])].birthdate =
           birthdate[1] + '/' + birthdate[2] + '/' + birthdate[0];
       }
-      if (values.relatives[Number(tabindex[firsttab])].past_emails) {
+      if (values.relatives[Number(tabindex[firsttab])].past_emails.length > 0) {
         values.relatives[
           Number(tabindex[firsttab])
         ].past_emails = values.relatives[
           Number(tabindex[firsttab])
         ].past_emails.split(',');
+      } else {
+        values.relatives[Number(tabindex[firsttab])].past_emails = [];
       }
-      if (values.relatives[Number(tabindex[firsttab])].aliases) {
+      if (values.relatives[Number(tabindex[firsttab])].aliases.length > 0) {
         values.relatives[Number(tabindex[firsttab])].aliases = values.relatives[
           Number(tabindex[firsttab])
         ].aliases.split(',');
+      } else {
+        values.relatives[Number(tabindex[firsttab])].aliases = [];
       }
       values.relatives[Number(tabindex[firsttab])].client_id = user_id;
     }
@@ -268,37 +280,41 @@ export default function Removal_Page(props) {
       })
       .then(result => {
         console.log(result);
-        message.success('User info updated successfully');
-        if (values.relatives[Number(tabindex[firsttab])]) {
-          if (values.relatives[Number(tabindex[firsttab])].birthdate) {
-            values.relatives[
-              Number(tabindex[firsttab])
-            ].birthdate = birthdate.join('-');
+        if (result.data.data.success) {
+          message.success('User info updated successfully');
+          if (values.relatives[Number(tabindex[firsttab])]) {
+            if (values.relatives[Number(tabindex[firsttab])].birthdate) {
+              values.relatives[
+                Number(tabindex[firsttab])
+              ].birthdate = birthdate.join('-');
+            }
+            // if (values.relatives[Number(tabindex[firsttab])].past_emails) {
+            //   values.relatives[
+            //     Number(tabindex[firsttab])
+            //   ].past_emails = values.relatives[
+            //     Number(tabindex[firsttab])
+            //   ].past_emails.join(',');
+            // }
+            // if (values.relatives[Number(tabindex[firsttab])].aliases) {
+            //   values.relatives[
+            //     Number(tabindex[firsttab])
+            //   ].aliases = values.relatives[
+            //     Number(tabindex[firsttab])
+            //   ].aliases.join(',');
+            // }
+          } else if (tabindex[firsttab] === undefined) {
+            if (values.birthdate) {
+              values.birthdate = birthdate.join('-');
+            }
+            // if (values.aliases) {
+            //   values.aliases = values.aliases.join(',');
+            // }
+            // if (values.past_emails) {
+            //   values.past_emails = values.past_emails.join(',');
+            // }
           }
-          // if (values.relatives[Number(tabindex[firsttab])].past_emails) {
-          //   values.relatives[
-          //     Number(tabindex[firsttab])
-          //   ].past_emails = values.relatives[
-          //     Number(tabindex[firsttab])
-          //   ].past_emails.join(',');
-          // }
-          // if (values.relatives[Number(tabindex[firsttab])].aliases) {
-          //   values.relatives[
-          //     Number(tabindex[firsttab])
-          //   ].aliases = values.relatives[
-          //     Number(tabindex[firsttab])
-          //   ].aliases.join(',');
-          // }
-        } else if (tabindex[firsttab] === undefined) {
-          if (values.birthdate) {
-            values.birthdate = birthdate.join('-');
-          }
-          // if (values.aliases) {
-          //   values.aliases = values.aliases.join(',');
-          // }
-          // if (values.past_emails) {
-          //   values.past_emails = values.past_emails.join(',');
-          // }
+        } else {
+          message.error('Please try again !');
         }
       })
       .catch(err => message.error('Please try again !'));
@@ -326,7 +342,27 @@ export default function Removal_Page(props) {
           </p>
           <Formik
             enableReinitialize={true}
-            initialValues={userinfo}
+            initialValues={
+              userinfo || {
+                age: '',
+                aliases: '',
+                birthdate: '',
+                current_phone: '',
+                current_address: {
+                  city: '',
+                  country: '',
+                  state: '',
+                  street: '',
+                  zip_code: '',
+                },
+                current_email: '',
+                gender: '',
+                name: '',
+                past_emails: [],
+                past_phones: [],
+                past_adresses: [],
+              }
+            }
             onSubmit={submit_userinfo}
           >
             {({ values, setFieldValue }) => (

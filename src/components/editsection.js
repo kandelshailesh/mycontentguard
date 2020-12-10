@@ -19,9 +19,15 @@ export default function EditSection() {
       axiosInstance
         .get(`/api/client/${user_id}`)
         .then(response => {
-          setname(response.data.data.name);
+          console.log(response);
+          if (response.data.success) {
+            setname(response.data.data.name);
+          } else {
+            message.error('Error fetching data');
+          }
         })
         .catch(err => {
+          console.log(err);
           message.error('Error fetching data');
         });
     }
