@@ -1,0 +1,56 @@
+.thankyou {
+  //   display: flex;
+  margin: 0 auto;
+  padding: 10px 50px 50px 50px;
+  width: 60%;
+  //   flex-direction: column;
+  //   .thankyou__heading1 {
+  //     text-align: left;
+  //   }
+  .thankyou__main {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+
+    .thankyou__card1 {
+      display: flex;
+      line-height: 2;
+      margin-bottom: 5px;
+      padding: 20px;
+      border: 2px solid #eee;
+      flex-direction: column;
+
+      .thankyou__heading1 {
+        i {
+          color: green;
+        }
+        font-size: 30px;
+        span {
+          opacity: 0.6;
+          margin-left: 10px;
+        }
+      }
+      .thankyou__heading2 {
+        font-size: 20px;
+      }
+    }
+    .thankyou__card2 {
+      //   display: flex;
+      line-height: 1.5;
+      padding: 10px 20px;
+      border: 2px solid #eee;
+      font-size: 18px;
+    }
+    .thankyou__card3 {
+      //   display: flex;
+      line-height: 1.5;
+      margin-top: 5px;
+      padding: 10px 20px;
+      border: 2px solid #eee;
+      font-size: 18px;
+    }
+    // .thankyou__heading2 {
+    //   font-size: 20px;
+    // }
+  }
+}

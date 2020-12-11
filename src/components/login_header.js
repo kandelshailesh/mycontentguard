@@ -73,7 +73,17 @@ export default function Header(props) {
               }`}
             // style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           > */}
-          <a
+
+          <Link
+            to='/signup'
+            onClick={() => setActive('signup')}
+            className={`header__linkgroup__link
+              ${active === 'signup' ? 'header__linkgroup__link--active' : ''}`}
+            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+          >
+            Sign Up
+          </Link>
+          {/* <a
             className={`header__linkgroup__link
               ${
                 active === 'register' ? 'header__linkgroup__link--active' : ''
@@ -81,7 +91,7 @@ export default function Header(props) {
             href='https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted'
           >
             Sign Up
-          </a>
+          </a> */}
           {/* </Link> */}
           <Link
             onClick={() => setActive('my-account')}

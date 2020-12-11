@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
 export default function Homepage_Header({ src }) {
-  const [active, setActive] = useState('submit-removals');
+  const [active, setActive] = useState('');
   const [width, setWidth] = useState(window.innerWidth);
   const [link, setLink] = useState(false);
 
@@ -30,9 +30,9 @@ export default function Homepage_Header({ src }) {
         >
           <Link
             to='/'
-            onClick={() => setActive('home')}
+            onClick={() => setActive('')}
             className={`header__linkgroup__link
-              ${active === 'home' ? 'header__linkgroup__link--active' : ''}`}
+              ${active === '' ? 'header__linkgroup__link--active' : ''}`}
             style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Home
@@ -55,18 +55,16 @@ export default function Homepage_Header({ src }) {
           >
             About
           </a>
-          {/* <Link
-            to='https://mycontentguard.com/lp/personal-data-removal-protection-promo/#getstarted'
-            onClick={() => setActive('register')}
+          <Link
+            to='/signup'
+            onClick={() => setActive('signup')}
             className={`header__linkgroup__link
-              ${
-                active === 'register' ? 'header__linkgroup__link--active' : ''
-              }`}
+              ${active === 'signup' ? 'header__linkgroup__link--active' : ''}`}
             style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Sign Up
-          </Link> */}
-          <a
+          </Link>
+          {/* <a
             className={`header__linkgroup__link
               ${
                 active === 'register' ? 'header__linkgroup__link--active' : ''
@@ -75,7 +73,7 @@ export default function Homepage_Header({ src }) {
             style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
           >
             Sign Up
-          </a>
+          </a> */}
 
           <Link
             onClick={() => setActive('my-account')}

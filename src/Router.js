@@ -27,6 +27,24 @@ const routes = [
     authorize: true,
   },
   {
+    path: '/signup',
+    component: loadable(() => import('./components/signup')),
+    exact: true,
+    authorize: false,
+  },
+  {
+    path: '/confirmorder',
+    component: loadable(() => import('./components/confirmorder')),
+    exact: true,
+    authorize: false,
+  },
+  {
+    path: '/order-received/thank-you',
+    component: loadable(() => import('./components/thankyou')),
+    exact: true,
+    authorize: false,
+  },
+  {
     path: '/my-account',
     component: loadable(() => import('./components/login')),
     exact: true,

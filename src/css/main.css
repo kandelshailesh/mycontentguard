@@ -5550,3 +5550,254 @@
     color: #0084ff;
   }
 }
+
+.signup {
+  display: flex;
+  flex-direction: row;
+  margin-top: -70px;
+  font-family: 'Barlow', Sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(//mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/11/membersportalpreview2.jpg);
+  background-position: center center;
+  background-size: cover;
+  flex-direction: row;
+  padding: 100px 70px 100px 30px;
+  width: 100%;
+}
+
+.signup .signup__left {
+  color: white;
+  width: 50%;
+}
+
+.signup .signup__left .left__heading1 {
+  line-height: 1em;
+  font-size: 80px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.signup .signup__left .left__heading1 span {
+  color: #0084ff;
+}
+
+.signup .signup__left .left__heading2 {
+  font-size: 20px;
+  color: white;
+  opacity: 0.6;
+}
+
+.signup .signup__right {
+  display: flex;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.signup .signup__right .right__card {
+  width: 100%;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.signup .signup__right .right__card .card__heading {
+  padding: 20px;
+  font-size: 40px;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  box-shadow: none;
+  font-family: 'Barlow', Sans-serif;
+}
+
+.signup .signup__right .right__card .card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px 40px 20px;
+}
+
+.signup .signup__right .right__card .card__body input {
+  padding: 8px 20px;
+  border: none;
+  box-shadow: 0px 0px 5px #eee;
+  border: 1px solid #eee;
+  outline: none;
+}
+
+.signup .signup__right .right__card .card__body input::placeholder {
+  opacity: 0.7;
+}
+
+.signup .signup__right .right__card .card__body input + div {
+  color: red;
+  font-size: 15px;
+  padding-top: 10px;
+}
+
+.signup .signup__right .right__card .card__body .signupbtn {
+  background-color: #0084ff;
+  color: white;
+  padding: 15px 50px;
+  font-size: 20px;
+  border: none;
+  align-self: flex-start;
+}
+
+.signup .signup__right .right__card .card__body label.rememberme {
+  font-size: 16px;
+  color: black;
+}
+
+.signup .signup__right .right__card .card__body label.lostpassword {
+  color: #0084ff;
+  font-size: 17px;
+}
+
+.signup .signup__right .right__card .card__body p {
+  text-align: center;
+}
+
+.signup .signup__right .right__card .card__body p span {
+  color: #0084ff;
+}
+
+@media screen and (max-width: 800px) {
+  .signup {
+    display: flex;
+    flex-direction: column-reverse;
+    font-family: 'Barlow', Sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url(//mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/11/membersportalpreview2.jpg);
+    background-position: center center;
+    background-size: cover;
+    padding: 100px 10px;
+    width: 100%;
+  }
+  .signup .signup__left {
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .signup .signup__left .left__heading1 {
+    line-height: 1em;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .signup .signup__left .left__heading1 span {
+    color: #0084ff;
+  }
+  .signup .signup__left .left__heading2 {
+    font-size: 20px;
+    color: white;
+    opacity: 0.6;
+  }
+  .signup .signup__right {
+    display: flex;
+    width: 100%;
+    margin-left: 0px;
+  }
+  .signup .signup__right .right__card {
+    width: 100%;
+    box-shadow: none;
+    background-color: white;
+    border-radius: 5px;
+  }
+  .signup .signup__right .right__card .card__heading {
+    padding: 10px;
+    font-size: 30px;
+    border-bottom: 2px solid #eee;
+    text-align: center;
+    box-shadow: none;
+    font-family: 'Barlow', Sans-serif;
+  }
+  .signup .signup__right .right__card .card__body {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 40px 20px;
+  }
+  .signup .signup__right .right__card .card__body input {
+    padding: 10px 15px;
+    color: var(--e-global-color-text);
+    border: none;
+    font-size: 15px;
+    box-shadow: 0px 0px 5px #eee;
+    border: 1px solid #eee;
+    outline: none;
+  }
+  .signup .signup__right .right__card .card__body input::placeholder {
+    opacity: 0.7;
+  }
+  .signup .signup__right .right__card .card__body .signupbtn {
+    background-color: #0084ff;
+    color: white;
+    padding: 10px 50px;
+    font-size: 20px;
+    border: none;
+    align-self: flex-start;
+  }
+  .signup .signup__right .right__card .card__body label.rememberme {
+    font-size: 16px;
+    color: black;
+  }
+  .signup .signup__right .right__card .card__body label.lostpassword {
+    color: #0084ff;
+    font-size: 15px;
+  }
+  .signup .signup__right .right__card .card__body p {
+    text-align: left;
+  }
+  .signup .signup__right .right__card .card__body p span {
+    color: #0084ff;
+  }
+}
+
+.thankyou {
+  margin: 0 auto;
+  padding: 10px 50px 50px 50px;
+  width: 60%;
+}
+
+.thankyou .thankyou__main {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.thankyou .thankyou__main .thankyou__card1 {
+  display: flex;
+  line-height: 2;
+  margin-bottom: 5px;
+  padding: 20px;
+  border: 2px solid #eee;
+  flex-direction: column;
+}
+
+.thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 {
+  font-size: 30px;
+}
+
+.thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 i {
+  color: green;
+}
+
+.thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 span {
+  opacity: 0.6;
+  margin-left: 10px;
+}
+
+.thankyou .thankyou__main .thankyou__card1 .thankyou__heading2 {
+  font-size: 20px;
+}
+
+.thankyou .thankyou__main .thankyou__card2 {
+  line-height: 1.5;
+  padding: 10px 20px;
+  border: 2px solid #eee;
+  font-size: 18px;
+}
+
+.thankyou .thankyou__main .thankyou__card3 {
+  line-height: 1.5;
+  margin-top: 5px;
+  padding: 10px 20px;
+  border: 2px solid #eee;
+  font-size: 18px;
+}

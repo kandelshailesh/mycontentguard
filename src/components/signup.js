@@ -7,47 +7,47 @@ import { MCG } from '../index';
 import { Redirect, Link } from 'react-router-dom';
 import store from 'store';
 
-const LoginSchema = Yup.object().shape({
+const SignupSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Please enter valid email')
+    .email('Plese enter valid email')
     .required('Please enter this field'),
-  password: Yup.string().required('Please enter this field'),
+  password: Yup.string().min(8).required('Please enter this field'),
 });
-export default function Login(props) {
+export default function Signup(props) {
   const { history } = props;
-  const [loginerror, setloginerror] = useState(false);
+  const [signuperror, setsignuperror] = useState(false);
   const { status } = React.useContext(MCG);
+  const { errormessage, seterromessage } = useState('');
 
   if (status) {
     return <Redirect to='/'></Redirect>;
   }
-  const login_submit = values => {
+  const signup_submit = values => {
     console.log(values);
 
     axiosInstance
-      .post('/api/login', values)
+      .post('/api/auth', values)
       .then(response => {
-        const { success } = response.data;
+        const { success, msg } = response.data;
         // alert(success);
         if (success) {
-          setloginerror(false);
-          store.set('token', response.data.data);
-          message.success('Login Successfully');
+          setsignuperror(false);
+          message.success('Registered Successfully');
           window.location.href = '/';
         } else {
-          message.error('Error occured');
-          setloginerror(true);
+          message.error(msg);
+          setsignuperror(true);
         }
       })
       .catch(err => {
         console.log(err);
-        message.error('Error occured');
-        setloginerror(true);
+        message.error(err);
+        setsignuperror(true);
       });
   };
   return (
-    <div className='login'>
-      <div className='login__left'>
+    <div className='signup'>
+      <div className='signup__left'>
         <p className='left__heading1'>
           Take <span>control</span> of your <span>digital privacy.</span>
         </p>
@@ -56,19 +56,19 @@ export default function Login(props) {
           online with myContentGuard.
         </p>
       </div>
-      <div className='login__right'>
+      <div className='signup__right'>
         <div className='right__card'>
-          <div className='card__heading'>Login</div>
+          <div className='card__heading'>Signup</div>
 
           <Formik
             enableReinitialize={true}
             initialValues={{ email: '', password: '' }}
-            onSubmit={login_submit}
-            validationSchema={LoginSchema}
+            onSubmit={signup_submit}
+            validationSchema={SignupSchema}
           >
             {({ errors, touched }) => (
               <Form className='card__body'>
-                {loginerror && (
+                {signuperror && (
                   <div
                     style={{
                       color: 'red',
@@ -76,11 +76,11 @@ export default function Login(props) {
                       textAlign: 'center',
                     }}
                   >
-                    Invalid username or password
+                    {errormessage}
                   </div>
                 )}
                 <Field
-                  placeholder='Email Address'
+                  placeholder='Emai Address'
                   type='text'
                   name='email'
                 ></Field>
@@ -95,13 +95,13 @@ export default function Login(props) {
                   <div>{errors.password}</div>
                 )}
                 <br />
-                <label className='rememberme'>
+                {/* <label className='rememberme'>
                   <Field type='checkbox' name='remember_me'></Field>
                   &nbsp; Remember Me
-                </label>
-                <br />
-                <button className='loginbtn' type='submit'>
-                  Log In
+                </label> */}
+                {/* <br /> */}
+                <button className='signupbtn' type='submit'>
+                  Create Account
                 </button>
                 <br />
                 <label className='lostpassword'>
@@ -109,9 +109,9 @@ export default function Login(props) {
                 </label>
                 <br />
                 <p>
-                  Not a member yet? &nbsp;
+                  Already a member? &nbsp;
                   <span>
-                    <Link to='/signup'>Click Here to sign up</Link>
+                    <Link to='/my-account'>Click Here to Login</Link>
                   </span>
                 </p>
               </Form>
