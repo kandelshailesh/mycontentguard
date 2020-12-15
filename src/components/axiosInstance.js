@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import store from 'store';
-import ValidateToken from '../utils/validatetoken';
+import {ValidateToken} from '../utils/validatetoken';
 
 export const axiosInstance = Axios.create({
   baseURL: 'https://koolbean.xyz',

@@ -1,11 +1,38 @@
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1400px) {
   .main_container {
-    width: 1600px;
-    margin: 0 auto !important;
+    /* width: 1400px; */
+    /* display: flex; */
+    /* width: 100%; */
+    /* flex-direction: column; */
+    /* margin: 0 auto !important; */
+    /* justify-content: center; */
+    align-items: center;
+  }
+  .main_content {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 1200px !important;
+    margin-top: 70px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 50px !important;
   }
   .floating_button__main {
-    width: 1600px !important;
+    width: 1400px !important;
     margin: 0 auto !important;
     justify-content: flex-start !important;
   }
+}
+
+.loader {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.loader i {
+  font-size: 30px;
 }

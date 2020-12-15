@@ -1,10 +1,43 @@
 .planbutton__background {
   background-color: white !important;
-  transition: all 1s ease-in-out;
+  transition: transform 0.3s linear;
+  position: relative;
+  animation: slide 0.5s both;
 }
+@keyframes slide {
+  0% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.planbutton__background1 {
+  background-color: white !important;
+  transition: transform 0.3s linear;
+  position: relative;
+  animation: slide1 0.5s both;
+}
+@keyframes slide1 {
+  0% {
+    transform: translateX(15%);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.element-gap {
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  // align-items: center;
+}
+
 .homepage {
   font-family: 'Poppins', Sans-serif;
-
   .homepage__section1 {
     background-image: linear-gradient(rgba(40, 62, 212, 1), rgba(0, 0, 0, 0.8)),
       url(https://mycontentguard.com/wp-content/uploads/2020/10/membersportalpreview.jpg);
@@ -17,15 +50,31 @@
       background-color: transparent;
       border: 0px;
       box-shadow: none;
-      a {
-        color: white;
-      }
-      .header__logo {
+
+      .header__main {
+        display: flex;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 65px;
         a {
-          img {
-            filter: brightness(100%) contrast(100%) saturate(90%) blur(0px)
-              hue-rotate(0deg);
+          color: white;
+        }
+        .header__logo {
+          a {
+            img {
+              filter: brightness(100%) contrast(100%) saturate(90%) blur(0px)
+                hue-rotate(0deg);
+            }
+            box-shadow: none;
+            border: none;
           }
+        }
+        .header__linkgroup__link:hover {
+          color: #ff9600;
         }
       }
     }
@@ -283,10 +332,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        width: 60%;
-        padding: 5px 10px 5px 10px;
+        width: 40%;
+        padding: 5px 15px 5px 15px;
         border-radius: 30px;
-
+        position: absolute;
         background-color: #00b26c;
         > button {
           background-color: transparent;
@@ -1129,7 +1178,7 @@
     }
   }
   .homepage__section11 {
-    margin: 0px 20px 100px 20px;
+    margin: 0px auto 100px auto;
     padding: 50px 80px 50px 30px;
     display: flex;
     background-image: url('https://mycontentguard.com/wp-content/uploads/2020/10/blue-wave-bg.svg');
@@ -1185,13 +1234,25 @@
 
     .homepage__section1 {
       .header {
+        .header__main {
+          flex-direction: column;
+        }
         .header__logo {
           > a > img {
             width: 220px !important;
-            margin-top: 5px;
+            // margin-top: 5px;
           }
+          box-shadow: none;
+          border: none;
         }
+        // .header__linkgroup a {
+        //   // background-color: #000;
+        //   box-shadow: none;
+        //   border: 0px;
+        //   background-image: linear-gradient(180deg, #000739 0%, #0f2092 100%);
+        // }
       }
+
       background-image: linear-gradient(
           rgba(40, 62, 212, 1),
           rgba(0, 0, 0, 0.8)

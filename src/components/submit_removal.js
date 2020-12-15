@@ -7,7 +7,7 @@ import {
   MinusOutlined,
 } from '@ant-design/icons';
 import { Collapse } from 'antd';
-import { MCG } from '../index';
+import { MCG } from '../App';
 import { getMember } from './get_member';
 
 const { Panel } = Collapse;

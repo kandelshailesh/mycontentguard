@@ -37,6 +37,7 @@
       "react-app/jest"
     ]
   },
+  "proxy":"https://koolbean.xyz",
   "browserslist": {
     "production": [
       ">0.2%",

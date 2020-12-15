@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import {
   Route,
   Switch,
@@ -9,7 +9,7 @@ import {
 import { Index as NotFoundPage } from './components/404';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-import ValidateToken from './utils/validatetoken';
+import { ValidateToken } from './utils/validatetoken';
 import Homepage from './components/homepage';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -31,6 +31,8 @@ const routes = [
     component: loadable(() => import('./components/signup')),
     exact: true,
     authorize: false,
+    header: false,
+    footer: false,
   },
   {
     path: '/confirmorder',
@@ -87,8 +89,16 @@ const routes = [
 ];
 
 const Router = props => {
-  const { history } = props;
-  const [result] = ValidateToken();
+  const { history, result } = props;
+  // const [result, setresult] = useState(false);
+
+  // useEffect(() => {
+  //   const validate = async () => {
+  //     const result1 = await ValidateToken();
+  //     setresult(result1[0]);
+  //   };
+  //   validate();
+  // }, []);
 
   return (
     <Switch>
@@ -107,7 +117,7 @@ const Router = props => {
       {/* { */}
       {/* <Suspense fallback={<Spin indicator={antIcon} />}> */}
       {routes.map(route => {
-        if (route.authorize)
+        if (route.authorize) {
           return (
             <PrivateRoute
               authorized={result}
@@ -118,15 +128,19 @@ const Router = props => {
               {...props}
             />
           );
-        return (
-          <PublicRoute
-            {...props}
-            path={route.path}
-            component={route.component}
-            key={route.path}
-            exact={route.exact}
-          />
-        );
+        } else {
+          return (
+            <PublicRoute
+              {...props}
+              path={route.path}
+              component={route.component}
+              key={route.path}
+              exact={route.exact}
+              header={route.header}
+              footer={route.footer}
+            />
+          );
+        }
       })}
       {/* </Switch> */}
       {/* </Suspense> */}

@@ -20,7 +20,7 @@ export const PrivateRoute = ({
       exact={exact}
       render={props => {
         // console.log(props)
-        if (authorized)
+        if (authorized) {
           return (
             <div className='main_container'>
               <Header
@@ -33,14 +33,20 @@ export const PrivateRoute = ({
               <Footer />
             </div>
           );
-        // console.log('not authorized - back to home?')
-        notification.error({
-          message: 'Unauthorized Access',
-          description: 'You have no rights to access this page!',
-        });
-
+        }
+        //  else {
+        //   return <Redirect to='/' />;
+        // }
+        // } else {
+        //   // console.log('not authorized - back to home?')
+        //   notification.error({
+        //     message: 'Unauthorized Access',
+        //     description: 'You have no rights to access this page!',
+        //   });
+        //   return <Redirect to='/' />;
+        // }
         // return <Redirect to="/user/login" />
-        return <Redirect to='/' />;
+        // return <Redirect to='/' />;
       }}
     />
   );

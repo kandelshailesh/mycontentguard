@@ -5,8 +5,20 @@ import { notification } from 'antd';
 import Footer from './components/footer';
 import Header from './components/login_header';
 
-export const PublicRoute = ({ component: Component, path, keys, exact }) => {
-  //   alert(path);
+export const PublicRoute = ({
+  component: Component,
+  path,
+  keys,
+  exact,
+  header,
+  footer,
+}) => {
+  if (header === undefined) {
+    header = true;
+  }
+  if (footer === undefined) {
+    footer = true;
+  }
   return (
     <Route
       path={path}
@@ -18,14 +30,16 @@ export const PublicRoute = ({ component: Component, path, keys, exact }) => {
         }
         return (
           <div className='main_container'>
-            <Header
-              {...props}
-              src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/07/mycontentguardlogosvg.svg'
-            />
-            <div className='main_content'>
+            {header && (
+              <Header
+                {...props}
+                src='https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/07/mycontentguardlogosvg.svg'
+              />
+            )}
+            <div style={{ marginTop: 70 }}>
               <Component {...props} />
             </div>
-            <Footer />
+            {footer && <Footer />}
           </div>
         );
       }}

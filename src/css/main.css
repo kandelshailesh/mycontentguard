@@ -1,12 +1,17 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: 80px;
   background-color: white;
   box-shadow: 2px 2px #eee;
+}
+
+.header .header__main {
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
 }
 
 .header .header__logo {
@@ -46,13 +51,23 @@
   display: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   .header {
     flex-direction: column;
     justify-content: flex-start;
     max-height: 300px;
     box-shadow: 0 0 white;
     height: 65px;
+  }
+  .header .header__main {
+    display: flex;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
   }
   .header__logo {
     height: auto;
@@ -2806,7 +2821,42 @@
 
 .planbutton__background {
   background-color: white !important;
-  transition: all 1s ease-in-out;
+  transition: transform 0.3s linear;
+  position: relative;
+  animation: slide 0.5s both;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.planbutton__background1 {
+  background-color: white !important;
+  transition: transform 0.3s linear;
+  position: relative;
+  animation: slide1 0.5s both;
+}
+
+@keyframes slide1 {
+  0% {
+    transform: translateX(15%);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.element-gap {
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
 }
 
 .homepage {
@@ -2827,12 +2877,32 @@
   box-shadow: none;
 }
 
-.homepage .homepage__section1 .header a {
+.homepage .homepage__section1 .header .header__main {
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+}
+
+.homepage .homepage__section1 .header .header__main a {
   color: white;
 }
 
-.homepage .homepage__section1 .header .header__logo a img {
+.homepage .homepage__section1 .header .header__main .header__logo a {
+  box-shadow: none;
+  border: none;
+}
+
+.homepage .homepage__section1 .header .header__main .header__logo a img {
   filter: brightness(100%) contrast(100%) saturate(90%) blur(0px) hue-rotate(0deg);
+}
+
+.homepage .homepage__section1 .header .header__main .header__linkgroup__link:hover {
+  color: #ff9600;
 }
 
 .homepage .homepage__section1 .section1__main {
@@ -3116,9 +3186,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 60%;
-  padding: 5px 10px 5px 10px;
+  width: 40%;
+  padding: 5px 15px 5px 15px;
   border-radius: 30px;
+  position: absolute;
   background-color: #00b26c;
 }
 
@@ -4017,7 +4088,7 @@
 }
 
 .homepage .homepage__section11 {
-  margin: 0px 20px 100px 20px;
+  margin: 0px auto 100px auto;
   padding: 50px 80px 50px 30px;
   display: flex;
   background-image: url("https://mycontentguard.com/wp-content/uploads/2020/10/blue-wave-bg.svg");
@@ -4082,9 +4153,15 @@
     font-family: 'Poppins', Sans-serif;
     mix-blend-mode: multiply;
   }
+  .homepage .homepage__section1 .header .header__main {
+    flex-direction: column;
+  }
+  .homepage .homepage__section1 .header .header__logo {
+    box-shadow: none;
+    border: none;
+  }
   .homepage .homepage__section1 .header .header__logo > a > img {
     width: 220px !important;
-    margin-top: 5px;
   }
   .homepage .homepage__section1 .header {
     background-color: transparent;
@@ -5788,16 +5865,60 @@
 }
 
 .thankyou .thankyou__main .thankyou__card2 {
-  line-height: 1.5;
   padding: 10px 20px;
   border: 2px solid #eee;
   font-size: 18px;
 }
 
-.thankyou .thankyou__main .thankyou__card3 {
+.thankyou .thankyou__main .thankyou__card2 div:nth-child(1) {
   line-height: 1.5;
-  margin-top: 5px;
-  padding: 10px 20px;
-  border: 2px solid #eee;
-  font-size: 18px;
+}
+
+.thankyou .thankyou__main .thankyou__card2 div:nth-child(2) {
+  line-height: 3;
+}
+
+@media screen and (max-width: 800px) {
+  .thankyou {
+    margin: 0 auto;
+    padding: 10px 10px 50px 20px;
+    width: 98%;
+  }
+  .thankyou .thankyou__main {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+  }
+  .thankyou .thankyou__main .thankyou__card1 {
+    display: flex;
+    line-height: 2;
+    margin-bottom: 5px;
+    padding: 20px 10px;
+    border: 2px solid #eee;
+    flex-direction: column;
+  }
+  .thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 {
+    font-size: 30px;
+  }
+  .thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 i {
+    color: green;
+  }
+  .thankyou .thankyou__main .thankyou__card1 .thankyou__heading1 span {
+    opacity: 0.6;
+    margin-left: 10px;
+  }
+  .thankyou .thankyou__main .thankyou__card1 .thankyou__heading2 {
+    font-size: 20px;
+  }
+  .thankyou .thankyou__main .thankyou__card2 {
+    padding: 10px 10px;
+    border: 2px solid #eee;
+    font-size: 18px;
+  }
+  .thankyou .thankyou__main .thankyou__card2 div:nth-child(1) {
+    line-height: 1.5;
+  }
+  .thankyou .thankyou__main .thankyou__card2 div:nth-child(2) {
+    line-height: 3;
+  }
 }

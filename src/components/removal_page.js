@@ -10,7 +10,7 @@ import { Formik, Field, Form } from 'formik';
 import { userform_name } from './formname_generator';
 import { mock_data } from './dummy_data';
 import getUserID from '../utils/getUserID';
-import { MCG } from '../index';
+import { MCG } from '../App';
 const nametotab = {
   'Main User Info': 'user-info',
   'Family Member#1': 'family-member-1',
@@ -85,7 +85,7 @@ export default function Removal_Page(props) {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get(`/api/client/${user_id}`)
+      .get('/api/client/user-profile')
       .then(data => {
         console.log(data);
         const userinfo_api = data.data.data;
@@ -216,71 +216,14 @@ export default function Removal_Page(props) {
       }
       values.relatives[Number(tabindex[firsttab])].client_id = user_id;
     }
-    // var client_data;
-    // if (tabindex[firsttab] === undefined) {
-    //   client_data = {
-    //     age: values.age || '',
-    //     aliases: values.aliases || '',
-    //     birthdate: values.birthdate || '',
-    //     current_phone: values.current_phone || '',
-    //     current_address: {
-    //       city: values.city || '',
-    //       country: values.country || '',
-    //       state: values.state || '',
-    //       street: values.street || '',
-    //       zip_code: values.zip_code || '',
-    //     },
-    //     current_email: values.current_email || '',
-    //     gender: values.gender || '',
-    //     id: values.id,
-    //     name: values.name || '',
-    //     past_emails: [],
-    //     past_phones: [],
-    //     past_adresses: [],
-    //   };
-    // } else {
-    //   var index = Number(tabindex[firsttab]);
-
-    //   values.relatives.forEach((value, index, array) => {});
-    //   client_data = {
-    //     relatives: [
-    //       ...values.relatives,
-    //       {
-    //         age: values.relatives[Number(tabindex[firsttab])].age || '',
-    //         aliases: values.relatives[Number(tabindex[firsttab])].aliases || '',
-    //         birthdate:
-    //           values.relatives[Number(tabindex[firsttab])].birthdate || '',
-    //         current_phone:
-    //           values.relatives[Number(tabindex[firsttab])].current_phone || '',
-    //         current_address: {
-    //           city: values.relatives[Number(tabindex[firsttab])].city || '',
-    //           country:
-    //             values.relatives[Number(tabindex[firsttab])].country || '',
-    //           state: values.relatives[Number(tabindex[firsttab])].state || '',
-    //           street: values.relatives[Number(tabindex[firsttab])].street || '',
-    //           zip_code:
-    //             values.relatives[Number(tabindex[firsttab])].zip_code || '',
-    //         },
-    //         current_email:
-    //           values.relatives[Number(tabindex[firsttab])].current_email || '',
-    //         gender: values.relatives[Number(tabindex[firsttab])].gender || '',
-    //         id: values.relatives[Number(tabindex[firsttab])].id,
-    //         name: values.relatives[Number(tabindex[firsttab])].name || '',
-    //         past_emails: [],
-    //         past_phones: [],
-    //         past_adresses: [],
-    //       },
-    //     ],
-    //   };
-    // }
 
     axiosInstance
-      .patch(`/api/client/${user_id}`, {
+      .patch('/api/client/user-profile', {
         ...values,
       })
       .then(result => {
         console.log(result);
-        if (result.data.data.success) {
+        if (result.data.success) {
           message.success('User info updated successfully');
           if (values.relatives[Number(tabindex[firsttab])]) {
             if (values.relatives[Number(tabindex[firsttab])].birthdate) {

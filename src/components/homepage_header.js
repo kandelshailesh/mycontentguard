@@ -15,30 +15,38 @@ export default function Homepage_Header({ src }) {
   return (
     <>
       <div className='header'>
-        <div className='header__logo'>
-          <Link to='/'>
-            <img width='300' height='37' src={src} alt='myContentGuard Logo' />
-          </Link>
-        </div>
-        <div
-          className={`header__linkgroup ${
-            width > 1000 ? 'header__desktop_display' : 'header__mobile__display'
-          }`}
-          style={{
-            display: width < 1000 && link ? 'flex' : '',
-          }}
-        >
-          <Link
-            to='/'
-            onClick={() => setActive('')}
-            className={`header__linkgroup__link
-              ${active === '' ? 'header__linkgroup__link--active' : ''}`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+        <div className='header__main'>
+          <div className='header__logo'>
+            <Link to='/'>
+              <img
+                width='300'
+                height='37'
+                src={src}
+                alt='myContentGuard Logo'
+              />
+            </Link>
+          </div>
+          <div
+            className={`header__linkgroup ${
+              width > 1000
+                ? 'header__desktop_display'
+                : 'header__mobile__display'
+            }`}
+            style={{
+              display: width < 1000 && link ? 'flex' : '',
+            }}
           >
-            Home
-          </Link>
+            <Link
+              to='/'
+              onClick={() => setActive('')}
+              className={`header__linkgroup__link
+              ${active === '' ? 'header__linkgroup__link--active' : ''}`}
+              style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            >
+              Home
+            </Link>
 
-          {/* <Link
+            {/* <Link
             onClick={() => setActive('about-us')}
             to='/about-us'
             className={`header__linkgroup__link display
@@ -47,24 +55,24 @@ export default function Homepage_Header({ src }) {
           >
             About
           </Link> */}
-          <a
-            className={`header__linkgroup__link display
+            <a
+              className={`header__linkgroup__link display
             ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
-            href='https://mycontentguard.com/about-us/'
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            About
-          </a>
-          <Link
-            to='/signup'
-            onClick={() => setActive('signup')}
-            className={`header__linkgroup__link
+              href='https://mycontentguard.com/about-us/'
+              style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            >
+              About
+            </a>
+            <Link
+              to='/signup'
+              onClick={() => setActive('signup')}
+              className={`header__linkgroup__link
               ${active === 'signup' ? 'header__linkgroup__link--active' : ''}`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            Sign Up
-          </Link>
-          {/* <a
+              style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            >
+              Sign Up
+            </Link>
+            {/* <a
             className={`header__linkgroup__link
               ${
                 active === 'register' ? 'header__linkgroup__link--active' : ''
@@ -75,18 +83,18 @@ export default function Homepage_Header({ src }) {
             Sign Up
           </a> */}
 
-          <Link
-            onClick={() => setActive('my-account')}
-            to='/my-account/'
-            className={`header__linkgroup__link
+            <Link
+              onClick={() => setActive('my-account')}
+              to='/my-account/'
+              className={`header__linkgroup__link
             ${
               active === 'my-account' ? 'header__linkgroup__link--active' : ''
             }`}
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            Login
-          </Link>
-          {/* <Link
+              style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            >
+              Login
+            </Link>
+            {/* <Link
             onClick={() => setActive('contact')}
             to='/contact'
             className={`header__linkgroup__link
@@ -95,28 +103,29 @@ export default function Homepage_Header({ src }) {
           >
             Contact
           </Link> */}
-          <a
-            className={`header__linkgroup__link display
+            <a
+              className={`header__linkgroup__link display
             ${active === 'about-us' ? 'header__linkgroup__link--active' : ''}`}
-            href='https://mycontentguard.com/contact/'
-            style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
-          >
-            Contact
-          </a>
+              href='https://mycontentguard.com/contact/'
+              style={{ backgroundColor: width < 1000 ? '#283ed4' : '' }}
+            >
+              Contact
+            </a>
+          </div>
+          {!link ? (
+            <MenuOutlined
+              onClick={() => setLink(!link)}
+              className='header__menu'
+              style={{ color: 'white', fontSize: 25 }}
+            />
+          ) : (
+            <CloseOutlined
+              onClick={() => setLink(!link)}
+              className='header__menu'
+              style={{ color: 'white', fontSize: 25 }}
+            />
+          )}
         </div>
-        {!link ? (
-          <MenuOutlined
-            onClick={() => setLink(!link)}
-            className='header__menu'
-            style={{ color: 'white', fontSize: 25 }}
-          />
-        ) : (
-          <CloseOutlined
-            onClick={() => setLink(!link)}
-            className='header__menu'
-            style={{ color: 'white', fontSize: 25 }}
-          />
-        )}
       </div>
     </>
   );

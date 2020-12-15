@@ -6,14 +6,14 @@ import Submit_Removals from './submit_removal';
 import { axiosInstance } from '../utils/axiosInstance';
 import getUserID from '../utils/getUserID';
 import { isNaN } from 'formik';
-import { MCG } from '../index';
+import { MCG } from '../App';
 import { getMember } from './get_member';
 
 export default function EditSection() {
   const [title, settitle] = useState('DASHBOARD');
   const [visible, setvisible] = useState(false);
   const [name, setname] = useState('');
-  const { permission_level, user_id } = useContext(MCG);
+  const { permission_level, login_id: user_id } = useContext(MCG);
   useEffect(() => {
     if (!isNaN(user_id)) {
       axiosInstance

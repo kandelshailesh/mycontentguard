@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { message } from 'antd';
 import * as Yup from 'yup';
 import { axiosInstance } from '../utils/axiosInstance';
-import { MCG } from '../index';
+import { MCG } from '../App';
 import { Redirect, Link } from 'react-router-dom';
 import store from 'store';
 
@@ -47,76 +47,78 @@ export default function Login(props) {
   };
   return (
     <div className='login'>
-      <div className='login__left'>
-        <p className='left__heading1'>
-          Take <span>control</span> of your <span>digital privacy.</span>
-        </p>
-        <p className='left__heading2'>
-          Keep you and your loved ones' personal information safe and private
-          online with myContentGuard.
-        </p>
-      </div>
-      <div className='login__right'>
-        <div className='right__card'>
-          <div className='card__heading'>Login</div>
+      <div className='login__main element-gap'>
+        <div className='login__left'>
+          <p className='left__heading1'>
+            Take <span>control</span> of your <span>digital privacy.</span>
+          </p>
+          <p className='left__heading2'>
+            Keep you and your loved ones' personal information safe and private
+            online with myContentGuard.
+          </p>
+        </div>
+        <div className='login__right'>
+          <div className='right__card'>
+            <div className='card__heading'>Login</div>
 
-          <Formik
-            enableReinitialize={true}
-            initialValues={{ email: '', password: '' }}
-            onSubmit={login_submit}
-            validationSchema={LoginSchema}
-          >
-            {({ errors, touched }) => (
-              <Form className='card__body'>
-                {loginerror && (
-                  <div
-                    style={{
-                      color: 'red',
-                      marginBottom: 10,
-                      textAlign: 'center',
-                    }}
-                  >
-                    Invalid username or password
-                  </div>
-                )}
-                <Field
-                  placeholder='Email Address'
-                  type='text'
-                  name='email'
-                ></Field>
-                {errors.email && touched.email && <div>{errors.email}</div>}
-                <br />
-                <Field
-                  placeholder='Password'
-                  type='password'
-                  name='password'
-                ></Field>
-                {errors.password && touched.password && (
-                  <div>{errors.password}</div>
-                )}
-                <br />
-                <label className='rememberme'>
-                  <Field type='checkbox' name='remember_me'></Field>
-                  &nbsp; Remember Me
-                </label>
-                <br />
-                <button className='loginbtn' type='submit'>
-                  Log In
-                </button>
-                <br />
-                <label className='lostpassword'>
-                  Lost Password? Click Here
-                </label>
-                <br />
-                <p>
-                  Not a member yet? &nbsp;
-                  <span>
-                    <Link to='/signup'>Click Here to sign up</Link>
-                  </span>
-                </p>
-              </Form>
-            )}
-          </Formik>
+            <Formik
+              enableReinitialize={true}
+              initialValues={{ email: '', password: '' }}
+              onSubmit={login_submit}
+              validationSchema={LoginSchema}
+            >
+              {({ errors, touched }) => (
+                <Form className='card__body'>
+                  {loginerror && (
+                    <div
+                      style={{
+                        color: 'red',
+                        marginBottom: 10,
+                        textAlign: 'center',
+                      }}
+                    >
+                      Invalid username or password
+                    </div>
+                  )}
+                  <Field
+                    placeholder='Email Address'
+                    type='text'
+                    name='email'
+                  ></Field>
+                  {errors.email && touched.email && <div>{errors.email}</div>}
+                  <br />
+                  <Field
+                    placeholder='Password'
+                    type='password'
+                    name='password'
+                  ></Field>
+                  {errors.password && touched.password && (
+                    <div>{errors.password}</div>
+                  )}
+                  <br />
+                  <label className='rememberme'>
+                    <Field type='checkbox' name='remember_me'></Field>
+                    &nbsp; Remember Me
+                  </label>
+                  <br />
+                  <button className='loginbtn' type='submit'>
+                    Log In
+                  </button>
+                  <br />
+                  <label className='lostpassword'>
+                    Lost Password? Click Here
+                  </label>
+                  <br />
+                  <p>
+                    Not a member yet? &nbsp;
+                    <span>
+                      <Link to='/signup'>Click Here to sign up</Link>
+                    </span>
+                  </p>
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </div>

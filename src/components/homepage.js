@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import Header from './header';
 import Footer from './footer';
 import Homepage_Header from './homepage_header';
-import { Carousel } from 'antd';
+import { Carousel, Popover } from 'antd';
 import { customerReview } from '../constants/index';
 
 export default function Homepage() {
@@ -15,6 +15,7 @@ export default function Homepage() {
   const [counter, set_counter] = useState(50000);
   const [total_review, settotal_review] = useState(5000);
   const [isMobile, setisMobile] = useState(false);
+  const [hovered, sethovered] = useState(false);
 
   // const width = window.innerWidth;
 
@@ -59,14 +60,14 @@ export default function Homepage() {
 
   return (
     <>
-      <div className='homepage'>
+      <div className='homepage main_container'>
         <div className='homepage__section1'>
           <Homepage_Header
             src={
               'https://mk0mycontentgua5v6j0.kinstacdn.com/wp-content/uploads/2020/10/mycontentguardlogowhite.svg'
             }
           ></Homepage_Header>
-          <div className='section1__main'>
+          <div className='section1__main  element-gap '>
             <div className='section1__child'>
               <p className='heading1'>
                 DELETE YOUR NAME & INFO FROM GOOGLE AND DATA WEBSITES
@@ -103,7 +104,7 @@ export default function Homepage() {
             How myContentGuard Removes Unwanted Information Online
           </p>
         </div>
-        <div className='homepage__section3'>
+        <div className='homepage__section3 element-gap'>
           <div className='section3__description'>
             <div className='description__details'>
               <div className='details__image'>
@@ -193,7 +194,7 @@ export default function Homepage() {
           <p className='section2__heading2'>Built For Your Peace Of Mind.</p>
         </div>
 
-        <div className='homepage__section5'>
+        <div className='homepage__section5 element-gap'>
           <div className='section5__left'>
             <img
               className='image'
@@ -261,24 +262,38 @@ export default function Homepage() {
           </p>
           <div className='line'></div>
           <div className='section6__main'>
-            <div className='main__button'>
-              <button
-                onClick={() => setplan('annual')}
-                className={`button__annual ${
-                  plan === 'annual' ? 'planbutton__background' : ''
-                }`}
-              >
-                ANNUAL
-              </button>
-              <button
-                onClick={() => setplan('monthly')}
-                className={`button__monthly ${
-                  plan === 'monthly' ? 'planbutton__background' : ''
-                }`}
-              >
-                MONTHLY
-              </button>
-            </div>
+            <Popover
+              style={{ width: 500 }}
+              content='Save over 45% with annual'
+              // title='Save over 45% with annual'
+              trigger='hover'
+              visible={hovered}
+              onVisibleChange={() => sethovered(!hovered)}
+            >
+              <div className='main__button'>
+                <button
+                  onClick={() =>
+                    setplan(prev => (prev === 'monthly' ? 'annual' : 'monthly'))
+                  }
+                  className={`button__annual ${
+                    plan === 'annual' ? 'planbutton__background1' : ''
+                  }`}
+                >
+                  ANNUAL
+                </button>
+                <button
+                  onClick={() =>
+                    setplan(prev => (prev === 'monthly' ? 'annual' : 'monthly'))
+                  }
+                  // onClick={() => setplan('monthly')}
+                  className={`button__monthly ${
+                    plan === 'monthly' ? 'planbutton__background' : ''
+                  }`}
+                >
+                  MONTHLY
+                </button>
+              </div>
+            </Popover>
             <div className='main__plan'>
               {plan === 'annual' && (
                 <div className='plan__annual'>
@@ -967,7 +982,7 @@ export default function Homepage() {
             <p className='heading1__title'>What We Do</p>
           </div>
         </div>
-        <div className='homepage__section8'>
+        <div className='homepage__section8 element-gap'>
           <div className='section8__image'>
             <img
               className='image'
@@ -1004,7 +1019,11 @@ export default function Homepage() {
 
           {/* <p></p> */}
         </div>
-        <Carousel {...props} autoplay className='section9__carousel'>
+        <Carousel
+          {...props}
+          autoplay
+          className='section9__carousel element-gap'
+        >
           {customerReview.map((value, index, array) => (
             <div className='carousel__slicker'>
               <div className='slicker__content'>
@@ -1031,7 +1050,7 @@ export default function Homepage() {
           <div className='section10__heading1'>
             <p className='heading1__title'>Why myContentGuard?</p>
           </div>
-          <div className='section10__main'>
+          <div className='section10__main element-gap'>
             <div className='section10__left'>
               <p className='left__title'>Fast removals. Trusted protection.</p>
               <p className='left__body1'>
@@ -1058,7 +1077,7 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <div className='homepage__section11'>
+        <div className='homepage__section11 element-gap '>
           <label className='section11__title'>
             Join the thousands of people using myContentGuard
           </label>

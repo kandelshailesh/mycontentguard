@@ -1,9 +1,9 @@
-import ValidateToken from './validatetoken';
+import { ValidateToken } from './validatetoken';
 
-export default function getUserID() {
-  const [result, userinfo] = ValidateToken();
+export default async function getUserID() {
+  const [result, userinfo] = await ValidateToken();
   if (result) {
-    return userinfo.user_id;
+    return userinfo.login_id;
   } else {
     // window.location.href = '/';
   }

@@ -3,9 +3,10 @@ import { Formik, Form, Field } from 'formik';
 import { message } from 'antd';
 import * as Yup from 'yup';
 import { axiosInstance } from '../utils/axiosInstance';
-import { MCG } from '../index';
+import { MCG } from '../App';
 import { Redirect, Link } from 'react-router-dom';
 import store from 'store';
+import queryString from 'query-string';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -14,26 +15,32 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string().min(8).required('Please enter this field'),
 });
 export default function Signup(props) {
-  const { history } = props;
+  const {
+    history,
+    location: { search },
+  } = props;
   const [signuperror, setsignuperror] = useState(false);
   const { status } = React.useContext(MCG);
   const { errormessage, seterromessage } = useState('');
-
-  if (status) {
+  let { order_id } = queryString.parse(search);
+  if (status || !order_id) {
     return <Redirect to='/'></Redirect>;
   }
   const signup_submit = values => {
     console.log(values);
-
     axiosInstance
-      .post('/api/auth', values)
+      .post('/api/auth', values, {
+        headers: {
+          Authorization: order_id,
+        },
+      })
       .then(response => {
         const { success, msg } = response.data;
         // alert(success);
         if (success) {
           setsignuperror(false);
           message.success('Registered Successfully');
-          window.location.href = '/';
+          window.location.href = `/#/order-received/thank-you?order_id=${order_id}&email=${values.email}`;
         } else {
           message.error(msg);
           setsignuperror(true);
@@ -58,7 +65,7 @@ export default function Signup(props) {
       </div>
       <div className='signup__right'>
         <div className='right__card'>
-          <div className='card__heading'>Signup</div>
+          <div className='card__heading'>Complete Signup</div>
 
           <Formik
             enableReinitialize={true}

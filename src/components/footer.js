@@ -7,7 +7,7 @@ export default function Footer() {
   }, [width]);
   return (
     <div className='footer'>
-      <div className='footertop'>
+      <div className='footertop element-gap'>
         <div className='footertop__left'>
           <div className='left__description'>
             <p>
@@ -167,8 +167,8 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <div className='footermiddle'>
-        <div className='line'></div>
+      <div className='footermiddle '>
+        <div className='line element-gap'></div>
         <div className='footermiddle__featured'>
           <p>FEATURED ON</p>
 
@@ -202,8 +202,8 @@ export default function Footer() {
             )}
           </span>
         </div>
-        <div className='line'></div>
-        <div className='footer__bottom'>
+        <div className='line element-gap'></div>
+        <div className='footer__bottom element-gap'>
           <div className='bottom__privacy'>
             <a rel='noreferrer' href='/privacy-policy'>
               Privacy Policy

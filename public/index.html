@@ -38,6 +38,24 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <style>
+      body {
+        overflow: hidden;
+      }
+      .loader {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+      .loader i {
+        font-size: 30px;
+      }
+    </style>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -75,7 +93,11 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
+    <div id="root">
+      <div class="loader">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
